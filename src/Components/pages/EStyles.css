@@ -1,0 +1,363 @@
+.linkprnt{
+   
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+/* background-color: rgb(105, 209, 209); */
+}
+
+/* .........CAROUSEL.......... */
+
+.close{
+    color: black;
+    float: left;
+}
+#tittle{
+    display:none;
+}
+.active{
+    color:orange;
+} 
+#navbar{
+    text-align: center;
+    display: flex;
+    border-radius: 10px;
+    /* flex-wrap: wrap; */
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgb(221, 221, 219);
+    border-bottom: 5px solid rgb(213, 214, 212);
+    background-color: rgb(6, 58, 67);
+    padding: 5px;
+}
+.search{
+    width: 10vw;
+    text-align: center;
+    height: 4vh;
+    border: none;
+}
+.searchicon{
+    /* margin-top: 1px; */
+   position: relative;
+   top: 10px;
+    width: 30px; 
+}
+.searchbar{
+    align-items: center;
+background-color: white;
+}
+.dashboard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    background-color: beige;
+}
+#shopify{
+    /* float: left; */
+    border-radius: 10px;
+    padding-left:3px;
+    padding-right:3px ;
+    width: 10vw;
+    height: 6vh;
+background-color: rgb(242, 242, 241);
+
+}
+a{
+    text-decoration: none;
+    font: 30px bolder;
+    color: rgb(245, 241, 243);
+}
+.menu{
+    display: none;
+}
+#menu_list{
+    display: none;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    list-style-type: none;
+}
+.componentLink{
+    width: 50vw;
+    text-align: center;
+    /* border: 3px solid rgb(184, 178, 178); */
+    display: flex;
+    gap: 10px;
+    justify-content:space-around;
+}
+#menu_button{
+    display: none;
+}
+/* .....DROP DOWN...... */
+ul li{
+    list-style: none;
+    text-align: left;
+}
+ul.dropdown{
+    width: 7%;
+    position: absolute;
+    z-index: 999;
+    display: none;
+    animation: anim  2s  linear 1;
+}
+
+   li:hover ul.dropdown {
+    background-color: yellow;
+    background: rgb(27, 29, 27);
+    display: block;
+    
+    /* width: 100%; */
+}
+ul.dropdown:hover ul.dropdown{
+display: block;
+}
+@keyframes anim{
+    0%{
+        display: block;
+    }
+    25%{
+        display: block;
+      
+    }
+100%{
+    
+    display: block;
+}
+}
+
+/* ...............HOME PAGE.......... */
+
+.firstbox{
+    height: 40vh;
+    background-color: darkgray;
+}
+.services{
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+    border: 1px solid rgb(170, 169, 169);
+}
+.s-box{
+    width: 30vw;
+    text-align: center;
+    background-color: rgb(244, 247, 247);
+}
+/* .......generic page.... */
+.gen{
+    min-height: 300px;
+    width: 20vw;
+    border: 2px solid rgb(194, 187, 187);
+    /* background-color: cadetblue; */
+}
+.main_cotainer{
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.container1{
+    width: 40%;
+    height: 60vh;
+    background-color: brown;
+}
+.container2{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+}
+/* ......FOOTER...... */
+.footer{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+margin-top: 20px;
+color: white;
+background-color: black;
+padding-top: 10px;
+}
+#social_icons{
+    width: 20vw;
+    height: 7vh;
+}
+.references{
+    font-size: small;
+}
+.refLink{
+    font-size: large;
+}
+
+
+/* ////////////......LOGIN-SIGNUP..../////////// */
+.profile{
+   display: none;
+   margin-left: 85vw;
+   margin-top: 60px;
+  position: absolute;
+    width:10%;
+    border: 1px solid black;
+    background-color: rgb(21, 24, 23);
+}
+
+.prfLink{
+  
+    color:green;
+}
+.header{
+    color: white;
+    background-color:rgb(50, 56, 66);
+    font-size: xx-large;
+    /* padding: 10px; */
+}
+.body{
+    /* min-height: 97vh; */
+    background-image: linear-gradient(to right, #2c3e50, #dfe4e7);
+}
+.parent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.reg{
+    width: 35%;
+    height:382px;
+    background-color: white;
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 5px;
+    align-items: center;
+}
+.reg1{
+    height:382px;
+    width: 40%;
+    background-color: rgb(39, 39, 64);
+    color: white;
+}
+.alreadylog{
+    color: rgb(21, 142, 77);
+    font-weight: bolder;
+}
+.reg2{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height:382px;
+    align-content: space-around;
+    justify-content: space-around;
+    gap: 5px;
+    /* background-color: aqua; */
+}
+.register{
+    font-size:1.5vw;
+}
+input{
+    width: 18vw;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    font-size: larger;
+}
+
+b{
+    color:blue;
+}
+.btn{
+    font-size: larger;
+    background-color: darkblue;
+    width: 12vw;
+    height: 5vh;
+    color: white;
+    border-radius: 5px;
+}
+
+/* ////////////......LOGIN-SIGNUP..../////////// */
+
+
+
+/*........ media queries......... */
+@media screen and (min-width:300px) and (max-width:820px)
+{
+
+    /* ///profile//// */
+    .profile{
+        display: none;
+    }
+   .log_sign{
+    border: 1px solid black;
+display: none;
+background-color: rgb(229, 229, 15);
+   }
+   #close{
+    width: 10vw;
+    float: left;
+   }
+    .reg{
+        width: max-content;
+        height: max-content;
+    }
+    input{
+        width: 53vw;
+    }
+    .btn{
+        width: max-content;
+    }
+    .refLink{
+        font-size: large;
+        color: white;
+        text-decoration: none;
+        border-bottom: none;
+    }
+    a{
+        color: black;
+    }
+    #tittle{
+        display: block; 
+        justify-content: space-around;
+        gap: 20px;
+        padding: 5px;
+        /* padding-bottom: 2px; */
+        /* border-bottom: 2px solid grey; */
+        background-color: rgb(6, 58, 67);
+    }
+    #shopify{
+        width: 35vw;
+        height: 7vh;
+    }
+    #navbar{
+        display: none;
+        }
+    #menu_button{
+        display: block;
+        float: right;
+    }
+    .menu{
+        display: block;
+    }
+       li{
+        border-bottom: 2px solid black;
+    }
+   
+   .search{
+    border: 1px solid black;
+    width: 70vw;
+   
+   }
+    /* ...home... */
+    .services{
+        flex-direction: column;
+        align-items: center;
+    }
+    .s-box{
+        width:80vw;
+    }
+    .footer{
+        flex-direction: column;
+    }
+}

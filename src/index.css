@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* ..........Carousel.... */
+.carousel {
+  overflow: hidden;
+   width: 99%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.radio{
+  position: absolute;
+  z-index: 999;
+  top: 80%;
+  left: 50vw;
+  border-radius: 50%;
+  font-size: xx-large;
+font-weight: bolder;
+}
+.inner {
+  white-space: nowrap;
+  /* display: flex; */
+  justify-content: space-around;
+  /* width: 95%; */
+  transition: transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-item {
+  width: 99vw;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  height: 490px;
+  background-color: #fff;
+}
+
+/* .carousel-item-text {
+  font-size: 1.15rem;
+  margin: 40px 0 40px 0;
+  padding: 0 20px 0 20px;
+  white-space: normal;
+  color: #617d98;
+} */
+.carousel-img {
+  width: 950px;
+  padding: 0 20px 0 20px;
+}
+
+/* final stage */
+
+.carousel-buttons {
+  position: absolute;
+  z-index: 999;
+  top: 30%;
+  left: 17vw;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+.arrows{
+  position: absolute;
+  z-index: 999;
+  top: 30%;
+  left: 8vw;
+  width: 100px;
+  height: 70px;
+}
+.rightarrows{
+  position: absolute;
+  z-index: 999;
+  top: 30%;
+  left: 67vw;
+  width: 150px;
+  height: 90px;
+}
+.button-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.indicators {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.indicator-buttons {
+  border: none;
+  cursor: pointer;
+}
+
+.indicators > button {
+  margin: 5px;
+ 
+  background: none;
+}
+
+.indicator-symbol {
+  color: #134c77;
+}
+
+.indicator-symbol-active {
+  /* background-color: rgb(125, 124, 124); */
+color: red;
+}
