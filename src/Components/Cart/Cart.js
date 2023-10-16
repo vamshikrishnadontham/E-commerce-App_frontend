@@ -1,10 +1,10 @@
 import React, {  useEffect, useState } from 'react'
 import axios from "axios"
 import './cart.css'
-import Orderplaced from './Orderplaced'
-import { Link,useNavigate } from 'react-router-dom'
+
+import { Link } from 'react-router-dom'
 const Cart=()=>{
-    const navigate=useNavigate();
+   
     const [counter,setCounter]=useState(1);
     const [data,setData]=useState(''); 
   useEffect(()=>{
@@ -30,10 +30,7 @@ const Cart=()=>{
              
                 price=price+item.price;
 
-                const submitorder=()=>{
-                    alert("order placed succesfully");
-navigate('/orderplaced')
-                }
+                
                 return(
                     <>
                     <div key={index} className='card'>
@@ -60,7 +57,7 @@ navigate('/orderplaced')
             <Link to="/orderplaced">
                 <button id="order" className='btn' 
                 onClick={()=>alert("order placers successfull")}
-                state={{index:price}}
+                
                 >Place Order
                 </button>
                 </Link>

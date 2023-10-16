@@ -7,7 +7,7 @@ const SingleProductComp2=(props)=>{
       axios.get(`http://localhost:5000/${props.value}`)
       .then((data)=>setValue(data.data)) 
      .catch((e)=>console.log("eeror",e))
- },[])
+ },[props.value])
     console.log("use effect",value,props)
 
     return( 

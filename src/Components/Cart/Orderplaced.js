@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Orderplaced(props) {
+function Orderplaced() {
     return (
         <div>
         <h1>order placed</h1>

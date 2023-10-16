@@ -7,8 +7,8 @@ import favorite from '../assets/Home/favorite2.svg'
 import search from '../assets/Home/search_icon.svg'
 import shopify from '../assets/Home/shopifylogo.png'
 import { Link } from "react-router-dom"
-import { useState,useContext, useEffect } from "react"
-import Global from "../../Global"
+import { useState, useEffect } from "react"
+// import Global from "../../Global"
 import axios from "axios"
 
 const Navbar=()=>{
@@ -19,7 +19,7 @@ const Navbar=()=>{
     if(token){ axios.get("http://localhost:5000/getdetails",{headers:{authorization:token}})
  .then((res)=>res.data).then((data)=>setDetails(data.details))
  }
- },[])
+ },[token])
 
 // let data={...Gdata,"username":details.name}
     // Gdata.updateGdata(data);
@@ -147,7 +147,7 @@ const handelClick2=()=>{
         </div>
       <div>
         
-      { details.islogin===true? <h4 id="username">{details.name}</h4>:<h4></h4>
+      { details.islogin===true? <h4 id="username">{details.name}</h4>:<h4>.</h4>
            }</div>
   <div className="dashboard"> 
     <Link to='/cart'><img src={cart} alt='not' height='40px' width='45px'/></Link>

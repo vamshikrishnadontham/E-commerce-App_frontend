@@ -5,8 +5,6 @@ import support from "../assets/Home/support.svg";
 import {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import SliderComp from "../Carousel/SliderComp";
-// import SliderComp from "../Carousel/SliderComp";
-// import Carousel from "./carousel/carousel";
 const Home = () => {
   const [mobile,setMobile]=useState("");
   const [watch,setWatch]=useState("");
