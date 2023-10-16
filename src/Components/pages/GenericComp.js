@@ -1,4 +1,4 @@
-// import mobile from '../assets/mobiles/Apple Watch 21-1.png'
+
 import axios from "axios"
 import { useEffect,useState } from "react"
 import { Link } from "react-router-dom";
@@ -14,7 +14,6 @@ const GenericComp=(props)=>{
     return( 
         
         <div  className="main_cotainer">
-            {/* <div className="container1"></div> */}
             <div className="container2">
             {
              value&&value.map((item,index)=>{
