@@ -34,7 +34,7 @@ const Home = () => {
         <div className="container2">
           {
             mobile&&mobile.map((item,index)=>{
-              if(index%3===0){
+              
                 return (
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
@@ -43,7 +43,7 @@ const Home = () => {
              
                   </div>
               )
-              }
+              
               
             })
           }
@@ -52,7 +52,7 @@ const Home = () => {
         <div className="container2">
           {
             watch&&watch.map((item,index)=>{
-              if(index%3===0){
+              
                 return (
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
@@ -61,7 +61,7 @@ const Home = () => {
              
                   </div>
               )
-              }
+              
               
             })
           }
@@ -70,7 +70,7 @@ const Home = () => {
         <div className="container2">
           {
             headset&&headset.map((item,index)=>{
-              if(index%3===0){
+              
                 return (
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
@@ -79,7 +79,7 @@ const Home = () => {
              
                   </div>
               )
-              }
+              
               
             })
           }
@@ -88,7 +88,7 @@ const Home = () => {
         <div className="container2">
           {
             laptop&&laptop.map((item,index)=>{
-              if(index%3===0){
+             
                 return (
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='300px' height='200px' /></Link>
@@ -97,7 +97,7 @@ const Home = () => {
              
                   </div>
               )
-              }
+              
               
             })
           }
