@@ -1,19 +1,12 @@
 import GenericComp from "./GenericComp"
-import axios from "axios"
-import { useEffect,useState } from "react"
+// import axios from "axios"
+// import { useEffect,useState } from "react"
 const Mobiles=()=>{ 
-const [value,setValue]=useState("");
-  useEffect(()=>{
-     axios.get("http://localhost:5000/mobiles")
-     .then((data)=>setValue(data.data)) 
-    .catch((e)=>console.log("eeror",e))
-},[])
-   console.log("use effect",value)
-
+const category="mobiles"
     return(
         <>
         <div>mobiles page</div> 
-        <GenericComp data={value}/>
+        <GenericComp data={category}/>
         </>
     )
 }

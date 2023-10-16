@@ -1,10 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link,useLocation } from "react-router-dom";
+import { useContext, useState } from "react"
+import Global from "../../../Global";
 const LoginComp=()=>{
     const [token,setToken]=useState('');
-    const setUsername=useLocation().state.username
-    // let arr=[];
+   const Gdata=useContext(Global);
     const userData={
         email:'',
         password:''
@@ -16,30 +15,27 @@ const LoginComp=()=>{
  
     const  submit= async (e)=>{ 
         e.preventDefault(e);
-      
-        console.log(userData); 
     const data= await axios.post('http://localhost:5000/login',userData)
     .then((res)=>res.data).catch((err)=>console.log({error:err}))
-    alert(data.msg)
+      alert(data.msg)
+        var datainfo={...Gdata,"token":token,"username":data.username,"islogin":data.islogin}
+        Gdata.updateGdata(datainfo)
     setToken(data.token)
-    setUsername(data.username)
-    // let temp=document.getElementsByTagName('h3')[0]
-   
-    // temp.innerHTML=username
-    console.log("username",data.username);
+    
+    console.log("username",data.username,"islogin",data.islogin);
     }
    
     if(token&&token){
-        console.log("token:",token); 
+        // console.log("token:",token); 
         localStorage.setItem("mahesh",token);
-        const dd=localStorage.getItem("mahesh");
-        console.log("local storage token:mahesh ",dd);
+        // const dd=localStorage.getItem("mahesh");
+        // console.log("local storage token:mahesh ",dd);
     }
    
     return(
         <> 
-        <div className="body">
-        <button><Link className="prfLink lf" to='/profile'>X</Link></button>
+        <div className="body"> 
+        
         <header className='header'><h1>Login Page</h1></header>
         <div className="parent">
         <div className="reg"> 
@@ -66,6 +62,7 @@ const LoginComp=()=>{
         </div>
        
         </div>
+        {/* <Username value={username}/> */}
         </>
     )
 } 
