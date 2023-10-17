@@ -13,9 +13,10 @@ const ProductDetails=()=>{
  await axios.post("https://e-commerce-app-6v8f.onrender.com/addtocart",item,{headers:{authorization:token}})
 .then((res)=>setResdata(res.data)).catch((err)=>{
     console.log("error",err);
+    console.log("response data",resdata.msg);
 })
 await alert("added to cart succesfully")
-// console.log("response data",resdata.msg);
+
     }
     // 
     return(

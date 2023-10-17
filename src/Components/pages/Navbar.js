@@ -16,17 +16,17 @@ const Navbar=()=>{
     const navigate=useNavigate()
  const [details,setDetails]=useState('');
  const token=localStorage.getItem("mahesh");
- const [username,setUserName]=useState('');
+//  const [username,setUserName]=useState('');
  const loginval=localStorage.getItem("islogin")
 const [login,setLogin]=useState({islogin:loginval});
 console.log("loginval===============",login);
 
  useEffect(()=>{
-    if(token){ axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
+     axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
  .then((res)=>res.data).then((data)=>setDetails(data.details))
- }
- localStorage.getItem("islogin")? setUserName(details.name) : setUserName('');
- },[login])
+
+//  localStorage.getItem("islogin")? setUserName(details.name) : setUserName('');
+ },[token])
 //  if(login.islogin){
 //     // setUserName(details.name);
 //     var name=details.name;
@@ -190,7 +190,7 @@ console.log("logout sumit");
         </div>
       <div>
         
-       <h4 id="username">{username}</h4>
+       {/* <h4 id="username">{username}</h4> */}
            </div>
  
 <div className="dashboard"> 
