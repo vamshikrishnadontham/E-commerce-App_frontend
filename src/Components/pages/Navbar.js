@@ -6,27 +6,42 @@ import cart from '../assets/Home/shopping-cart.png'
 import favorite from '../assets/Home/favorite2.svg'
 import search from '../assets/Home/search_icon.svg'
 import shopify from '../assets/Home/shopifylogo.png'
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 // import Global from "../../Global"
 import axios from "axios"
 
 const Navbar=()=>{
     // const Gdata=useContext(Global)
+    const navigate=useNavigate()
  const [details,setDetails]=useState('');
  const token=localStorage.getItem("mahesh");
+ const [username,setUserName]=useState('');
+ const loginval=localStorage.getItem("islogin")
+const [login,setLogin]=useState({islogin:loginval});
+console.log("loginval===============",login);
+
  useEffect(()=>{
-    if(token){ axios.get("http://localhost:5000/getdetails",{headers:{authorization:token}})
+    if(token){ axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
  .then((res)=>res.data).then((data)=>setDetails(data.details))
  }
- },[token])
-
+ localStorage.getItem("islogin")? setUserName(details.name) : setUserName('');
+ },[login])
+//  if(login.islogin){
+//     // setUserName(details.name);
+//     var name=details.name;
+//     console.log("username====== ueseffect==",name);
+//   }
+//   else{
+//     //   setUserName('');
+//     name=''
+//   }
+ console.log("email==========",details);
 // let data={...Gdata,"username":details.name}
     // Gdata.updateGdata(data);
     // console.log("navbar gdta",Gdata.username,"login ststus:",Gdata.islogin);
-    // console.log("email==========",details);
+    // 
     let cnt=1;
-
 
 function menubox(){
     let menu= document.getElementById('menu_list');
@@ -63,6 +78,34 @@ const handelClick2=()=>{
    log_sign.style.display='block';
 
 }
+
+
+const submitlogout=()=>{
+    localStorage.setItem("islogin",false)
+    setLogin({...login,islogin:loginval})
+    const token=localStorage.getItem("mahesh")
+console.log("token",token);
+    if(!token)
+{
+    // return <div>You are already logged out</div>
+    console.log("no token recieved");
+}
+else{
+   axios.get("https://e-commerce-app-6v8f.onrender.com/logoutuser",{headers:{authorization:token}})
+ .then((res)=>res.data).then((res)=>{
+    if(res.code===200){
+        localStorage.setItem("islogin",false)
+    }
+ })
+ .catch((err)=>console.log("error",err))
+ 
+navigate("/")
+
+console.log("logout sumit");
+}
+}
+
+// console.log("islogin========",islogin);
 
     return(
        
@@ -147,15 +190,15 @@ const handelClick2=()=>{
         </div>
       <div>
         
-      { details.islogin===true? <h4 id="username">{details.name}</h4>:<h4>.</h4>
-           }</div>
-  <div className="dashboard"> 
-    <Link to='/cart'><img src={cart} alt='not' height='40px' width='45px'/></Link>
-   { details.islogin===true ? <div className='profile2'>
-            <button>< Link className='prfLink' to='/logout'  >logout</ Link></button>
-        </div>:<button onClick={handelClick}><img src={profile} alt='not' height='35px'/></button> }
-    
+       <h4 id="username">{username}</h4>
+           </div>
+ 
+<div className="dashboard"> 
+  <Link to='/cart'><img src={cart} alt='not' height='40px' width='45px'/></Link>
+
+ <button onClick={handelClick}><img src={profile} alt='not' height='35px'/></button> 
 </div>
+ <div><button style={{height:'40px',fontSize:"large"}} onClick={submitlogout}>Logout</button></div>
         </div>
         <div className='profile'>
            <button onClick={handleClose}>X</button>
@@ -169,4 +212,5 @@ const handelClick2=()=>{
       
     )
 }
+
 export default Navbar

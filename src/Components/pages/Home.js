@@ -11,16 +11,16 @@ const Home = () => {
   const [headset,setHeadset]=useState("");
   const [laptop,setLaptop]=useState("");
    useEffect(()=>{
-      axios.get(`http://localhost:5000/mobiles`)
+      axios.get(`https://e-commerce-app-6v8f.onrender.com/mobiles`)
       .then((data)=>setMobile(data.data)) 
      .catch((e)=>console.log("eeror",e))
-     axios.get(`http://localhost:5000/watches`)
+     axios.get(`https://e-commerce-app-6v8f.onrender.com/watches`)
      .then((data)=>setWatch(data.data)) 
     .catch((e)=>console.log("eeror",e))
-    axios.get(`http://localhost:5000/headset`)
+    axios.get(`https://e-commerce-app-6v8f.onrender.com/headset`)
     .then((data)=>setHeadset(data.data)) 
    .catch((e)=>console.log("eeror",e))
-   axios.get(`http://localhost:5000/laptop`)
+   axios.get(`https://e-commerce-app-6v8f.onrender.com/laptop`)
    .then((data)=>setLaptop(data.data)) 
   .catch((e)=>console.log("eeror",e))
  },[])

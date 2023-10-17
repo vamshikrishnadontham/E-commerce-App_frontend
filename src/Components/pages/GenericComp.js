@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const GenericComp=(props)=>{
    const [value,setValue]=useState("");
    useEffect(()=>{
-      axios.get(`http://localhost:5000/${props.data}`)
+      axios.get(`https://e-commerce-app-6v8f.onrender.com/${props.data}`)
       .then((data)=>setValue(data.data)) 
      .catch((e)=>console.log("eeror",e))
  },[props.data])

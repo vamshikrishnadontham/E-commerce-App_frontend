@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SingleProductComp2=(props)=>{
    const [value,setValue]=useState("");
    useEffect(()=>{
-      axios.get(`http://localhost:5000/${props.value}`)
+      axios.get(`https://e-commerce-app-6v8f.onrender.com/${props.value}`)
       .then((data)=>setValue(data.data)) 
      .catch((e)=>console.log("eeror",e))
  },[props.value])
@@ -16,7 +16,7 @@ const SingleProductComp2=(props)=>{
             {/* <div className="container1"></div> */}
             <div className="container2">
             {
-             value&&value.filter((item)=>item.category===props.product).map((item,index)=>{
+             value&&value.filter((item)=>item.brand===props.product).map((item,index)=>{
                 return (
                     <div className="laptop_container" key={index}>
                    <Link to='/laptopdetails' state={{index:item}} > <img src={item.image} alt='not' width='300px' height='200px' />

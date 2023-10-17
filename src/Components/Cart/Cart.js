@@ -3,20 +3,20 @@ import axios from "axios"
 import './cart.css'
 
 import { Link } from 'react-router-dom'
-const Cart=()=>{
+const Cart=()=>{ 
    
     const [counter,setCounter]=useState(1);
     const [data,setData]=useState(''); 
   useEffect(()=>{
     const token=localStorage.getItem("mahesh")
-    axios.get("http://localhost:5000/getcartdetails",{headers:{authorization:token}})
+    axios.get("https://e-commerce-app-6v8f.onrender.com/getcartdetails",{headers:{authorization:token}})
     .then((res)=>res.data)
     .then((data)=>setData(data[0].cart))
     .catch((err)=>{
         console.log("error",err)
     },[])
   },[])
-   console.log("data=========",data);
+//    console.log("data=========",data);
    let price=0
     return (
         <>
@@ -49,7 +49,7 @@ const Cart=()=>{
                     </div>
                     <hr></hr>
                     </>
-                )
+                ) 
             })
         }
           

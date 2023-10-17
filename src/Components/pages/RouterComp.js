@@ -18,7 +18,6 @@ import AppleLaptop from "./product_pages/Laptop/AppleLaptop"
 import Lenovo from "./product_pages/Laptop/Lenovo"
 import ProductDetails from "./ProductDetails.js"
 import LaptopDetails from "./LaptopDetails"
-import LogoutComp from "./login-signup/LogoutComp"
 import Cart from "../Cart/Cart"
 import Orderplaced from "../Cart/Orderplaced"
 const RouteComp=()=>{
@@ -32,7 +31,7 @@ const RouteComp=()=>{
             <Route path="/laptop" element={<Laptop/>}/>
             <Route path="/login" element={<LoginComp/>}/>
             <Route path="/signup" element={<RegisterComp/>}/>
-            <Route path="/logout" element={<LogoutComp/>}/>
+            
             <Route path="/profile" element={<ProfileComp/>}/>
             <Route path="/productdetails" element={<ProductDetails/>}/>
             <Route path='/laptopdetails' element={<LaptopDetails/>}/>

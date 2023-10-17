@@ -16,7 +16,7 @@ const RegisterComp=()=>{
         e.preventDefault(e);
         arr.push(userData)
         console.log(userData); 
-    axios.post('http://localhost:5000/register',userData)
+    axios.post('https://e-commerce-app-6v8f.onrender.com/register',userData)
     .then((res)=>alert(res.data.msg)).catch((err)=>console.log(err)) 
     }
     console.log(arr);

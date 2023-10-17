@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Laptop=()=>{
     const [value,setValue]=useState("");
     useEffect(()=>{
-       axios.get("http://localhost:5000/laptop")
+       axios.get("https://e-commerce-app-6v8f.onrender.com/laptop")
        .then((data)=>setValue(data.data)) 
       .catch((e)=>console.log("eeror",e))
   },[])

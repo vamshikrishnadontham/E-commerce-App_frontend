@@ -10,12 +10,12 @@ const ProductDetails=()=>{
         const token=localStorage.getItem("mahesh");
     console.log("token",token);
     console.log("item",item);
- await axios.post("http://localhost:5000/addtocart",item,{headers:{authorization:token}})
+ await axios.post("https://e-commerce-app-6v8f.onrender.com/addtocart",item,{headers:{authorization:token}})
 .then((res)=>setResdata(res.data)).catch((err)=>{
     console.log("error",err);
 })
 await alert("added to cart succesfully")
-console.log("response data",resdata.msg);
+// console.log("response data",resdata.msg);
     }
     // 
     return(
