@@ -7,19 +7,19 @@ import favorite from '../assets/Home/favorite2.svg'
 import search from '../assets/Home/search_icon.svg'
 import shopify from '../assets/Home/shopifylogo.png'
 import { Link,useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+// import { useState, useEffect } from "react"
 // import Global from "../../Global"
 import axios from "axios"
 
 const Navbar=()=>{
     // const Gdata=useContext(Global)
     const navigate=useNavigate()
- const [details,setDetails]=useState('');
- const token=localStorage.getItem("mahesh");
+//  const [details,setDetails]=useState('');
+//  const token=localStorage.getItem("mahesh");
 //  const [username,setUserName]=useState('');
- const loginval=localStorage.getItem("islogin")
-const [login,setLogin]=useState({islogin:loginval});
-console.log("loginval===============",login);
+//  const loginval=localStorage.getItem("islogin")
+// const [login,setLogin]=useState({islogin:loginval});
+// console.log("loginval===============",login);
 
 //  useEffect(()=>{
 //      axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
@@ -36,7 +36,7 @@ console.log("loginval===============",login);
 //     //   setUserName('');
 //     name=''
 //   }
- console.log("email==========",details);
+//  console.log("email==========",details);
 // let data={...Gdata,"username":details.name}
     // Gdata.updateGdata(data);
     // console.log("navbar gdta",Gdata.username,"login ststus:",Gdata.islogin);
@@ -82,7 +82,7 @@ const handelClick2=()=>{
 
 const submitlogout=()=>{
     localStorage.setItem("islogin",false)
-    setLogin({...login,islogin:loginval})
+    // setLogin({...login,islogin:loginval})
     const token=localStorage.getItem("mahesh")
 console.log("token",token);
     if(!token)
