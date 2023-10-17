@@ -7,7 +7,7 @@ import favorite from '../assets/Home/favorite2.svg'
 import search from '../assets/Home/search_icon.svg'
 import shopify from '../assets/Home/shopifylogo.png'
 import { Link,useNavigate } from "react-router-dom"
-// import { useState, useEffect } from "react"
+import { useState } from "react"
 // import Global from "../../Global"
 import axios from "axios"
 
@@ -17,8 +17,9 @@ const Navbar=()=>{
 //  const [details,setDetails]=useState('');
 //  const token=localStorage.getItem("mahesh");
 //  const [username,setUserName]=useState('');
-//  const loginval=localStorage.getItem("islogin")
-// const [login,setLogin]=useState({islogin:loginval});
+ const loginval=localStorage.getItem("islogin")
+const [login,setLogin]=useState(loginval);
+console.log("login========",login);
 // console.log("loginval===============",login);
 
 //  useEffect(()=>{
@@ -79,11 +80,17 @@ const handelClick2=()=>{
 
 }
 
-
+const handleCart=()=>{
+    if(login)
+   navigate('/cart')
+else
+alert(" please login first ")
+}
 const submitlogout=()=>{
     localStorage.setItem("islogin",false)
     // setLogin({...login,islogin:loginval})
     const token=localStorage.getItem("mahesh")
+    setLogin(false)
 console.log("token",token);
     if(!token)
 {
@@ -194,7 +201,9 @@ console.log("logout sumit");
            </div>
  
 <div className="dashboard"> 
-  <Link to='/cart'><img src={cart} alt='not' height='40px' width='45px'/></Link>
+  {/* <Link to='/cart'><img src={cart} alt='not' height='40px' width='45px'/></Link> */}
+  <button onClick={handleCart}>
+    <img src={cart} alt='not' height='40px' width='45px'/></button>
 
  <button onClick={handelClick}><img src={profile} alt='not' height='35px'/></button> 
 </div>

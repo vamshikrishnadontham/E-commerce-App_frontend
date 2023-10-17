@@ -5,7 +5,8 @@ import support from "../assets/Home/support.svg";
 import {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import SliderComp from "../Carousel/SliderComp";
-const Home = () => {
+import TrendingSlider from "../Carousel/TrendingSlider";
+const Home = () => { 
   const [mobile,setMobile]=useState("");
   const [watch,setWatch]=useState("");
   const [headset,setHeadset]=useState("");
@@ -33,7 +34,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Mobiles</h1>
         <div className="container2">
           {
-            mobile&&mobile.map((item,index)=>{
+            mobile&&mobile.filter((item,index)=>index%3===0).map((item,index)=>{
               
                 return (
                   <div className="gen" key={index}>
@@ -52,7 +53,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Watches</h1>
         <div className="container2">
           {
-            watch&&watch.map((item,index)=>{
+            watch&&watch.filter((item,index)=>index%3===0).map((item,index)=>{
               
                 return (
                   <div className="gen" key={index}>
@@ -71,7 +72,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Headset</h1>
         <div className="container2">
           {
-            headset&&headset.map((item,index)=>{
+            headset&&headset.filter((item,index)=>index%3===0).map((item,index)=>{
               
                 return (
                   <div className="gen" key={index}>
@@ -90,7 +91,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Laptops</h1>
         <div className="container2">
           {
-            laptop&&laptop.map((item,index)=>{
+            laptop&&laptop.filter((item,index)=>index%3===0).map((item,index)=>{
              
                 return (
                   <div className="gen" key={index}>
@@ -107,6 +108,7 @@ const Home = () => {
           }
         </div>
       </div>
+      <TrendingSlider value={watch}/>
       <div className="services">
         <div className="s-box">
           <img src={shipping} alt="not" />

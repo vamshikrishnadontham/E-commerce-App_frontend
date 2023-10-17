@@ -41,7 +41,7 @@ padding-right:10px ;
     flex-direction: column;
     gap: 20px;
   
-    border: 2px solid rgb(10, 10, 10);
+    /* border: 2px solid rgb(10, 10, 10); */
 }
 #order{
     width:300px;
