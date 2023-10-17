@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect,useState } from "react"
 import { Link } from "react-router-dom";
 const SingleProductComp2=(props)=>{
-   const [value,setValue]=useState("");
+   const [value,setValue]=useState(""); 
    useEffect(()=>{
       axios.get(`https://e-commerce-app-6v8f.onrender.com/${props.value}`)
       .then((data)=>setValue(data.data)) 
@@ -24,7 +24,7 @@ const SingleProductComp2=(props)=>{
                     <h2>{item.product_tittle}</h2>
                 <h3  className="price">Price:₹{item.price}</h3> 
                 <Link className="addtocartbtn" to='/laptopdetails' state={{index:item}} >
-                    <button className='btn'>Add To Cart</button>
+                    <button className='btn adbtn'>Add To Cart</button>
                     </Link>
                     </div>
                 )

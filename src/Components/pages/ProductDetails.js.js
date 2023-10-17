@@ -22,7 +22,7 @@ await alert("added to cart succesfully")
     return(
         <div className="singleproduct"> 
             <div className="p_image">
-        <img src={item.image} alt="not" width='400px' height='400px' /></div>
+        <img className="p_image2" src={item.image} alt="not"  /></div>
 <div className="highlights"><h1>{item.product_tittle}</h1>
 <h3  className="price">Price:₹{item.price}</h3>
                 

@@ -140,16 +140,30 @@ display: block;
     padding: 10px;
     box-shadow: 5px 5px 10px  rgb(168, 168, 170);
     height:min-content;
+   
+}
+.p_image2{
+width: 30vw;
+height: 70vh;
 }
 .highlights{
     width: 500px;
     line-height:30px;
 }
 .addtocartbtn{
+    width: 12vw;
 font-size: larger;
 }
 /* ...............HOME PAGE.......... */
 
+.images{
+    width: 15vw;
+    height: 30vh;
+}
+.images2{
+    width: 18vw;
+    height: 30vh;
+}
 .firstbox{
     height: 40vh;
     background-color: darkgray;
@@ -162,6 +176,7 @@ font-size: larger;
    justify-content: space-around;
     border: 1px solid rgb(170, 169, 169);
     box-shadow: 3px 5px  0px grey;
+    width: 95vw;
 }
 .s-box{
     width: 30vw;
@@ -228,7 +243,7 @@ padding-top: 10px;
 
 /* ////////////......LOGIN-SIGNUP..../////////// */
 .profile{
-   display: none;
+   display: none; 
    margin-left: 86vw;
    margin-top: 60px;
   position: absolute;
@@ -309,7 +324,9 @@ b{
     color: white;
     border-radius: 5px;
 }
-
+.adbtn{
+    width: 17vw;
+}
 /* ////////////......LOGIN-SIGNUP..../////////// */
 
 
@@ -317,6 +334,28 @@ b{
 /*........ media queries......... */
 @media screen and (min-width:300px) and (max-width:820px)
 {
+
+/* Productdetails........ */
+.singleproduct{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.laptop_container{
+    width: 80vw;
+}
+.highlights{
+    width: 97vw;
+}
+.p_image2{
+    width: 80vw;
+    height: 60vh;
+    }
+    .p_image3{
+        width: 80vw;
+        height: 40vh;
+        }
 /* GEneric comp..... */
 .main_cotainer{
     flex-direction: column;
@@ -390,6 +429,14 @@ background-color: rgb(229, 229, 15);
    
    }
     /* ...home... */
+    .images{
+        width: 70vw;
+        height: 50vh;
+    }
+    .images2{
+        width: 70vw;
+        height: 30vh;
+    }
     .services{
         flex-direction: column;
         align-items: center;

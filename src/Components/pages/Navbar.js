@@ -21,12 +21,12 @@ const Navbar=()=>{
 const [login,setLogin]=useState({islogin:loginval});
 console.log("loginval===============",login);
 
- useEffect(()=>{
-     axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
- .then((res)=>res.data).then((data)=>setDetails(data.details))
+//  useEffect(()=>{
+//      axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
+//  .then((res)=>res.data).then((data)=>setDetails(data.details))
 
-//  localStorage.getItem("islogin")? setUserName(details.name) : setUserName('');
- },[token])
+// //  localStorage.getItem("islogin")? setUserName(details.name) : setUserName('');
+//  },[token])
 //  if(login.islogin){
 //     // setUserName(details.name);
 //     var name=details.name;

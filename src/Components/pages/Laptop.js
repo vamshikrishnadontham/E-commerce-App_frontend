@@ -19,12 +19,13 @@ const Laptop=()=>{
          value&&value.map((item,index)=>{
             return (
                 <div className="laptop_container" key={index}>
-              <Link to='/laptopdetails' state={{index:item}} >  <img src={item.image} alt='not' width='300px' height='200px' />
+              <Link to='/laptopdetails' state={{index:item}} >  
+              <img src={item.image} alt='not'className="images2" />
               </Link>
                 <h2>{item.Pruduct_tittle}</h2>
             <h3 className="price">Price:{item.price}</h3>
             <Link className="addtocartbtn" to='/laptopdetails' state={{index:item}} >
-            <button className='btn'>Add To Cart</button> </Link>
+            <button className='btn adbtn'>Add To Cart</button> </Link>
                 </div>
             )
         }) 
