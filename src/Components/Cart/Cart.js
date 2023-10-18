@@ -105,7 +105,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
   const [data, setData] = useState([]);
-
+  let [temp,setTemp]=useState(0);
   useEffect(() => {
     const token = localStorage.getItem('mahesh');
     axios
@@ -120,7 +120,7 @@ const Cart = (props) => {
       .catch((err) => {
         console.log('error', err);
       });
-  }, [data]);
+  }, [temp]);
 
   const updateQuantity = (index, newQuantity) => {
     const updatedData = [...data];
@@ -179,8 +179,10 @@ const Cart = (props) => {
                               headers: { authorization: token },
                             })
                             .then((res) => res.data)
-                            .then((res) => console.log('removed item===', res))
+                            .then((res) => {setTemp(temp+1)
+                              return console.log('removed item===', res)})
                             .catch((err) => console.log('error', err));
+                               
                         }}
                       >
                         Remove
