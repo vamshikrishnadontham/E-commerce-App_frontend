@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useContext, useState } from "react"
+import { useNavigate,Link } from "react-router-dom";
 import Global from "../../../Global";
 const LoginComp=()=>{
     const [token,setToken]=useState('');
+    const navigate=useNavigate();
    const Gdata=useContext(Global);
     const userData={
         email:'',
@@ -15,14 +17,24 @@ const LoginComp=()=>{
  
     const  submit= async (e)=>{ 
         e.preventDefault(e);
-    const data= await axios.post('https://e-commerce-app-6v8f.onrender.com/login',userData)
-    .then((res)=>res.data).catch((err)=>console.log({error:err}))
+    const data= await axios.post('http://localhost:5000/login',userData)
+    .then((res)=>res.data)
+    .then((res)=>{ localStorage.setItem("email",res.email)
+    localStorage.setItem("islogin",res.islogin);
+    localStorage.setItem("loginid",1)
+    localStorage.setItem("mahesh",res.token)
+    localStorage.setItem("username",res.username)
+    document.getElementById('username').innerHTML=res.username
+        return res})
+    .catch((err)=>console.log({error:err}))
       alert(data.msg)
         var datainfo={...Gdata,"token":token,"username":data.username,"islogin":data.islogin}
         Gdata.updateGdata(datainfo) 
     setToken(data.token)
-    localStorage.setItem("islogin",true);
+    
+   
     console.log("username",data.username,"islogin",data.islogin);
+    navigate("/");
     }
    
     if(token&&token){
@@ -55,7 +67,7 @@ const LoginComp=()=>{
         <div>
         <button className="btn" onClick={submit}>login</button>
         </div>
-        <p className='alreadylog'>Don't have an account ? Sign up</p>
+        <p className='alreadylog'>no account ? <Link style={{color:"blue"}} to="/signup">Sign up</Link></p>
         </div>
        
         </div>

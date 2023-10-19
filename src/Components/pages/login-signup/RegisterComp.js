@@ -1,5 +1,7 @@
 import axios from 'axios'
+import { Link,useNavigate } from 'react-router-dom';
 const RegisterComp=()=>{
+    const navigate=useNavigate();
     let arr=[];
     const userData={
         name:'',
@@ -17,7 +19,9 @@ const RegisterComp=()=>{
         arr.push(userData)
         console.log(userData); 
     axios.post('https://e-commerce-app-6v8f.onrender.com/register',userData)
-    .then((res)=>alert(res.data.msg)).catch((err)=>console.log(err)) 
+    .then((res)=>{alert(res.data.msg)
+        return navigate('/login') }).catch((err)=>console.log(err)) 
+    
     }
     console.log(arr);
     console.log(userData);
@@ -49,7 +53,7 @@ const RegisterComp=()=>{
         <div>
         <button className="btn" onClick={submit}>Sign up</button>
         </div>
-        <p className='alreadylog'>Already have an account ? Login</p>
+        <p className='alreadylog'>Already have an account ?<Link style={{color:"blue"}} to="/login">login</Link></p>
         </div>
        
         </div>

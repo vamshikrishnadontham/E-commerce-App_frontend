@@ -1,7 +1,27 @@
 import {useLocation } from "react-router-dom"
+import axios from "axios";
+import { useState } from "react";
 const LaptopDetails=()=>{
     const item=useLocation().state.index;
     console.log("itme_id",item);
+    const token = localStorage.getItem("mahesh");
+    const [resdata, setResdata] = useState("");
+    const submit = async () => {
+      if (!token) {
+        alert("Please log in to add the item to the cart.");
+        return;
+      }
+  
+      try {
+        const response = await axios.post("https://e-commerce-app-6v8f.onrender.com/addtocart", item, {
+          headers: { authorization: token }
+        });
+        setResdata(response.data);
+        alert("Item added to the cart successfully");
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    };
     return(
         <div className="singleproduct">
             <div className="p_image">
@@ -12,7 +32,7 @@ const LaptopDetails=()=>{
 <h4>
     {item.highlights}
 </h4>
-<button className='btn btn2'>Add To Cart</button>
+<button className='btn btn2'  onClick={submit}>Add To Cart</button>
 </div>
         </div> 
     )

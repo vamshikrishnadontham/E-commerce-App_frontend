@@ -291,10 +291,12 @@ padding-top: 10px;
 .alreadylog{
     color: rgb(21, 142, 77);
     font-weight: bolder;
+    font-size: x-large;
 }
 .reg2{
     display: flex;
     flex-direction: column;
+    width: 50vw;
     flex-wrap: wrap;
     height:382px;
     align-content: space-around;
@@ -335,6 +337,15 @@ b{
 @media screen and (min-width:300px) and (max-width:820px)
 {
 
+    /* ////registerComp/// */
+    .register{
+        font-size:4vw;
+    }
+    .reg1{width:80vw;
+    height: auto;}
+    .reg{
+        flex-direction: column;
+    }
 /* Productdetails........ */
 .singleproduct{
     flex-direction: column;

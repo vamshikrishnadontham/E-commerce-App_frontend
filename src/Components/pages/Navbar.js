@@ -7,41 +7,15 @@ import favorite from '../assets/Home/favorite2.svg'
 import search from '../assets/Home/search_icon.svg'
 import shopify from '../assets/Home/shopifylogo.png'
 import { Link,useNavigate } from "react-router-dom"
-import { useState } from "react"
-// import Global from "../../Global"
+import {  useEffect, useState } from "react"
+
 import axios from "axios"
 
 const Navbar=()=>{
-    // const Gdata=useContext(Global)
+ 
+// localStorage.setItem("loginid",0)
     const navigate=useNavigate()
-//  const [details,setDetails]=useState('');
-//  const token=localStorage.getItem("mahesh");
-//  const [username,setUserName]=useState('');
- const loginval=localStorage.getItem("islogin")
-const [login,setLogin]=useState(loginval);
-console.log("login========",login);
-// console.log("loginval===============",login);
-
-//  useEffect(()=>{
-//      axios.get("https://e-commerce-app-6v8f.onrender.com/getdetails",{headers:{authorization:token}})
-//  .then((res)=>res.data).then((data)=>setDetails(data.details))
-
-// //  localStorage.getItem("islogin")? setUserName(details.name) : setUserName('');
-//  },[token])
-//  if(login.islogin){
-//     // setUserName(details.name);
-//     var name=details.name;
-//     console.log("username====== ueseffect==",name);
-//   }
-//   else{
-//     //   setUserName('');
-//     name=''
-//   }
-//  console.log("email==========",details);
-// let data={...Gdata,"username":details.name}
-    // Gdata.updateGdata(data);
-    // console.log("navbar gdta",Gdata.username,"login ststus:",Gdata.islogin);
-    // 
+const [details,setDetails]=useState('');
     let cnt=1;
 
 function menubox(){
@@ -79,38 +53,69 @@ const handelClick2=()=>{
    log_sign.style.display='block';
 
 }
+const [count,setCount]=useState(0)
+useEffect(() => {
+    // Retrieve username from local storage when the component mounts
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      document.getElementById('username').textContent = storedUsername;
+    }
+  }, []); // Empty dependency array means this effect runs once, when the component mounts
 
-const handleCart=()=>{
-    if(login)
-   navigate('/cart')
-else
-alert(" please login first ")
+  console.log("details", details);
+
+console.log("details",details);
+
+const HandleCart=()=>{
+// setCount(count+1);
+// useEffect(()=>{
+//     const islogin=localStorage.getItem('islogin')
+//     const loginid=localStorage.getItem('loginid')
+//     console.log(islogin);
+//     if(loginid==0){
+//         alert(" please login first ")
+//     }
+//     else if(loginid==1){
+//         // console.log("islogin",localStorage.getItem("islogin"));
+//         navigate('/cart')
+//     }
+//     },[count])
+       
+const loginid = localStorage.getItem('loginid');
+
+if (loginid === '0') {
+  // User is not logged in, show an alert
+  alert('Please log in first');
+} else {
+  // User is logged in, navigate to the cart page
+  navigate('/cart');
+}
+   
 }
 const submitlogout=()=>{
-    localStorage.setItem("islogin",false)
-    // setLogin({...login,islogin:loginval})
-    const token=localStorage.getItem("mahesh")
-    setLogin(false)
-console.log("token",token);
-    if(!token)
-{
-    // return <div>You are already logged out</div>
-    console.log("no token recieved");
-}
-else{
-   axios.get("https://e-commerce-app-6v8f.onrender.com/logoutuser",{headers:{authorization:token}})
+    // localStorage.setItem("islogin",false)
+    // setLogin(false)
+    const email=localStorage.getItem("email");
+   axios.post(`http://localhost:5000/logoutuser/${email}`)
  .then((res)=>res.data).then((res)=>{
-    if(res.code===200){
+   
         localStorage.setItem("islogin",false)
-    }
+        localStorage.setItem("mahesh",'')
+        localStorage.setItem("email",'')
+        localStorage.setItem("loginid",0)
+        let profile=document.getElementsByClassName('profile')[0]
+
+        profile.style.display='none';
+       return  alert(res.msg)
+    
  })
  .catch((err)=>console.log("error",err))
- 
+ document.getElementById('username').innerHTML=''
 navigate("/")
 
 console.log("logout sumit");
 }
-}
+
 
 // console.log("islogin========",islogin);
 
@@ -197,23 +202,29 @@ console.log("logout sumit");
         </div>
       <div>
         
-       {/* <h4 id="username">{username}</h4> */}
+       <h4 id="username">.</h4>
            </div>
  
 <div className="dashboard"> 
-  {/* <Link to='/cart'><img src={cart} alt='not' height='40px' width='45px'/></Link> */}
-  <button onClick={handleCart}>
+  <button onClick={HandleCart}>
     <img src={cart} alt='not' height='40px' width='45px'/></button>
 
  <button onClick={handelClick}><img src={profile} alt='not' height='35px'/></button> 
 </div>
- <div><button style={{height:'40px',fontSize:"large"}} onClick={submitlogout}>Logout</button></div>
+ 
         </div>
         <div className='profile'>
            <button onClick={handleClose}>X</button>
-          
-            <h2>< Link className='prfLink' to='/signup' >Signup</ Link></h2>
-            <h2>< Link className='prfLink' to='/login'  >login</ Link></h2>
+            <h2>< Link className='prfLink' to='/signup' onClick={()=>{
+                  let profile_div=document.getElementsByClassName("profile")[0]
+                  profile_div.style.display="none"
+            }} >Signup</ Link></h2>
+            <h2>< Link className='prfLink' to='/login'onClick={()=>{
+                let profile_div=document.getElementsByClassName("profile")[0]
+                profile_div.style.display="none"
+                document.getElementsByClassName()
+            }}  >login</ Link></h2>
+        <h2 onClick={submitlogout}>Logout</h2>
         </div>
        
         </div>
