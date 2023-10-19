@@ -17,6 +17,7 @@ const LaptopDetails=()=>{
           headers: { authorization: token }
         });
         setResdata(response.data);
+        console.log(resdata);
         alert("Item added to the cart successfully");
       } catch (err) {
         console.error("Error:", err);

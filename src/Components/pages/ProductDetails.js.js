@@ -56,6 +56,7 @@ const ProductDetails = () => {
         headers: { authorization: token }
       });
       setResdata(response.data);
+      console.log("resdata",resdata);
       alert("Item added to the cart successfully");
     } catch (err) {
       console.error("Error:", err);

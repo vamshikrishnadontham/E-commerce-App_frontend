@@ -7,7 +7,7 @@ import favorite from '../assets/Home/favorite2.svg'
 import search from '../assets/Home/search_icon.svg'
 import shopify from '../assets/Home/shopifylogo.png'
 import { Link,useNavigate } from "react-router-dom"
-import {  useEffect, useState } from "react"
+import {  useEffect } from "react"
 
 import axios from "axios"
 
@@ -15,7 +15,7 @@ const Navbar=()=>{
  
 // localStorage.setItem("loginid",0)
     const navigate=useNavigate()
-const [details,setDetails]=useState('');
+// const [details,setDetails]=useState('');
     let cnt=1;
 
 function menubox(){
@@ -53,7 +53,7 @@ const handelClick2=()=>{
    log_sign.style.display='block';
 
 }
-const [count,setCount]=useState(0)
+// const [count,setCount]=useState(0)
 useEffect(() => {
     // Retrieve username from local storage when the component mounts
     const storedUsername = localStorage.getItem('username');
@@ -61,10 +61,6 @@ useEffect(() => {
       document.getElementById('username').textContent = storedUsername;
     }
   }, []); // Empty dependency array means this effect runs once, when the component mounts
-
-  console.log("details", details);
-
-console.log("details",details);
 
 const HandleCart=()=>{
 // setCount(count+1);

@@ -17,7 +17,7 @@ const LoginComp=()=>{
  
     const  submit= async (e)=>{ 
         e.preventDefault(e);
-    const data= await axios.post('http://localhost:5000/login',userData)
+    const data= await axios.post('https://e-commerce-app-6v8f.onrender.com/login',userData)
     .then((res)=>res.data)
     .then((res)=>{ localStorage.setItem("email",res.email)
     localStorage.setItem("islogin",res.islogin);
