@@ -92,7 +92,7 @@ const submitlogout=()=>{
     // localStorage.setItem("islogin",false)
     // setLogin(false)
     const email=localStorage.getItem("email");
-   axios.post(`http://localhost:5000/logoutuser/${email}`)
+   axios.post(`https://e-commerce-app-6v8f.onrender.com/logoutuser/${email}`)
  .then((res)=>res.data).then((res)=>{
    
         localStorage.setItem("islogin",false)

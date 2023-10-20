@@ -101,7 +101,7 @@ const Cart = (props) => {
                 const token = localStorage.getItem('mahesh');
                 const email = localStorage.getItem('email');
                 axios
-                  .post(`http://localhost:5000/placeOrder/${email}`, {}, { headers: { authorization: token } })
+                  .post(`https://e-commerce-app-6v8f.onrender.com/placeOrder/${email}`, {}, { headers: { authorization: token } })
                   .then((res) => res.data)
                   .then((res) => console.log('removed item===', res))
                   .catch((err) => console.log('error', err));
