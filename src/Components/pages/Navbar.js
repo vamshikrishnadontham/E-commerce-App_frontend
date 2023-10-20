@@ -99,14 +99,15 @@ const submitlogout=()=>{
         localStorage.setItem("mahesh",'')
         localStorage.setItem("email",'')
         localStorage.setItem("loginid",0)
-        let profile=document.getElementsByClassName('profile')[0]
-
-        profile.style.display='none';
+       
        return  alert(res.msg)
     
  })
  .catch((err)=>console.log("error",err))
  document.getElementById('username').innerHTML=''
+ let profile=document.getElementsByClassName('profile')[0]
+
+ profile.style.display='none';
 navigate("/")
 
 console.log("logout sumit");
