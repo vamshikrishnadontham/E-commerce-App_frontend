@@ -25,7 +25,7 @@ console.log("props from trending====",props.value);
   };
 console.log(trendingProducts);
   return (
-    <div className="trending-carousel" style={{width:"95vw", margin:"5px"}}>
+    <div className="trending-carousel" style={{width:"90vw", margin:"5px"}}>
         <hr></hr>
       <h1>Trending Products</h1>
       <hr />
