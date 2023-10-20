@@ -170,12 +170,12 @@ font-size: larger;
 }
 .services{
     margin-top: 30px;
-    padding: 5px;
+    
     display: flex;
    flex-wrap: wrap;
    justify-content: space-around;
     border: 1px solid rgb(170, 169, 169);
-    box-shadow: 3px 5px  0px grey;
+    /* box-shadow: 3px 5px  0px grey; */
     width: 95vw;
 }
 .s-box{
