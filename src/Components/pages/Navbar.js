@@ -63,20 +63,7 @@ useEffect(() => {
   }, []); // Empty dependency array means this effect runs once, when the component mounts
 
 const HandleCart=()=>{
-// setCount(count+1);
-// useEffect(()=>{
-//     const islogin=localStorage.getItem('islogin')
-//     const loginid=localStorage.getItem('loginid')
-//     console.log(islogin);
-//     if(loginid==0){
-//         alert(" please login first ")
-//     }
-//     else if(loginid==1){
-//         // console.log("islogin",localStorage.getItem("islogin"));
-//         navigate('/cart')
-//     }
-//     },[count])
-       
+
 const loginid = localStorage.getItem('loginid');
 
 if (loginid === '0') {
@@ -212,15 +199,15 @@ console.log("logout sumit");
         </div>
         <div className='profile'>
            <button onClick={handleClose}>X</button>
-            <h2>< Link className='prfLink' to='/signup' onClick={()=>{
+            <h2><Link className='prfLink' to='/signup' onClick={()=>{
                   let profile_div=document.getElementsByClassName("profile")[0]
                   profile_div.style.display="none"
-            }} >Signup</ Link></h2>
-            <h2>< Link className='prfLink' to='/login'onClick={()=>{
+            }} >Signup</Link></h2>
+            <h2><Link className='prfLink' to='/login'onClick={()=>{
                 let profile_div=document.getElementsByClassName("profile")[0]
                 profile_div.style.display="none"
-                document.getElementsByClassName()
-            }}  >login</ Link></h2>
+              
+            }}  >login</Link></h2>
         <h2 onClick={submitlogout}>Logout</h2>
         </div>
        
