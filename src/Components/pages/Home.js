@@ -109,6 +109,7 @@ const Home = () => {
         </div>
       </div>
       <TrendingSlider value={watch}/>
+      {/* <TSlider/> */}
       <div className="services">
         <div className="s-box">
           <img src={shipping} alt="not" />

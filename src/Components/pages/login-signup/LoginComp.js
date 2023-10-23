@@ -25,6 +25,7 @@ const LoginComp=()=>{
     localStorage.setItem("mahesh",res.token)
     localStorage.setItem("username",res.username)
     document.getElementById('username').innerHTML=res.username
+    document.getElementById('username2').innerHTML=res.username
         return res})
     .catch((err)=>console.log({error:err}))
       alert(data.msg)

@@ -1,11 +1,6 @@
 
 const SliderMenu=[
     {
-     imageSrc:require("../../Media/carousel1.jpg"),
-     imageAlt:"slider1",
-     imageId:"silderImages1",
-    },
-    {
      imageSrc:require("../../Media/carousel1.jpg123.jpg"),
      imageAlt:"carousel 2",
      imageId:"silderImages2",
