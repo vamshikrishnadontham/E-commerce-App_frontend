@@ -1,9 +1,10 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
 // import { useState } from "react";
 
 const ProductDetails = () => {
+  const navigate=useNavigate();
   const item = useLocation().state.index;
   console.log("item=========== product details",item);
   // const [resdata, setResdata] = useState("");
@@ -22,6 +23,7 @@ const ProductDetails = () => {
       // setResdata(response.data.msg);
       console.log("resdata======",response.data.msg);
       alert(response.data.msg);
+      navigate("/");
       window.location.reload();
     } catch (err) {
       console.error("Error:",err);
