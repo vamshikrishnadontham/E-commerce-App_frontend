@@ -144,7 +144,7 @@ axios
                             .then((res) => {
                               alert("item removed succesfully")
 
-                              window.location.reload()
+                              // window.location.reload()
                               return setTemp(temp+1)
                               })
                             .catch((err) => console.log('error', err));
