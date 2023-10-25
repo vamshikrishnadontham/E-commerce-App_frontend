@@ -59,7 +59,8 @@ const options ={
     setTemp(temp+1)
     alert('Order placed successfully');
     navigate('/orderplaced')
-    window.location.reload()
+    navigate("/")
+    // window.location.reload()
     const paymentOption={
       razorpay_payment_id:response.razorpay_payment_id,
       razorpay_order_id:response.razorpay_order_id,
