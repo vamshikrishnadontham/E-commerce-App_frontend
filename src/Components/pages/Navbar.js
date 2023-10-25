@@ -234,7 +234,7 @@
 
 import { NavLink } from "react-router-dom";
 import menuButton from "./images.png";
-import profile from "../assets/Home/profile_icon.svg";
+// import profile from "../assets/Home/profile_icon.svg";
 import cart from "../assets/Home/shopping-cart.png";
 import shopify from "../assets/Home/shopifylogo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -278,12 +278,12 @@ const handleClose2=()=>{
 //     //  console.log(profile)
 //     profile.style.display='block';
 // }
-const handelClick2=()=>{
-    let log_sign=document.getElementsByClassName('log_sign')[0]
-    // console.log(log_sign)
-   log_sign.style.display='block';
+// const handelClick2=()=>{
+//     let log_sign=document.getElementsByClassName('log_sign')[0]
+//     // console.log(log_sign)
+//    log_sign.style.display='block';
 
-}
+// }
   // useEffect to update login status
   useEffect(() => {
     // Retrieve username from local storage when the component mounts

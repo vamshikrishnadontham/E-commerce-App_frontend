@@ -7,14 +7,14 @@ const Cart = (props) => {
   const navigate=useNavigate();
   const [data, setData] = useState([]);
   let [temp,setTemp]=useState(0);
-  let [cartcnt,setCart]=useState()
+ 
   const location = useLocation();
   let cartCount = location.state ? location.state.cartCount || 0 : 0; 
   
   // Check for null or undefined before accessing cartCount
   useEffect(() => {
     let token = localStorage.getItem('mahesh');
-    // setCart(cartCount);
+    
     axios
       .get('https://e-commerce-app-6v8f.onrender.com/getcartdetails', {
         headers: { authorization: token },
@@ -44,7 +44,7 @@ const Cart = (props) => {
   let response=await axios.post("https://e-commerce-app-6v8f.onrender.com/checkout",{"amount":(price-(price/10)+40)*100})
   let order_id=response.data.order.id
   console.log("orrder id",order_id);
- 
+    
 const options ={
   key:"rzp_test_FaT0o1O7SAaX6o", // Enter the Test API Key ID
   amount:price*100,// Amount is in currency subunits. Hence, 20 refers to 20
