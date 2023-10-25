@@ -5,7 +5,7 @@ const Watches=()=>{
   
       return(
           <>
-          <div>watches page</div> 
+          {/* <div>watches page</div>  */}
           <GenericComp data={category}/>
           </>
       )

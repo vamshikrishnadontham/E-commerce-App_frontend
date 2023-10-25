@@ -3,7 +3,7 @@ import { NavLink} from "react-router-dom"
 import menuButton from './images.png'
 import profile from '../assets/Home/profile_icon.svg'
 import cart from '../assets/Home/shopping-cart.png'
-import search from '../assets/Home/search_icon.svg'
+
 import shopify from '../assets/Home/shopifylogo.png'
 import { Link,useNavigate } from "react-router-dom"
 import {  useEffect } from "react"
@@ -154,47 +154,12 @@ console.log("logout sumit");
            </div>
            
          <div id='navbar'>
-        
+        <div className="nav2">
          <img id='shopify' src={shopify} alt="not" height='40px' width='50px'/>
-         <div className="componentLink">
-         <li> <NavLink to='/'>Home</NavLink></li> 
-
-         <li><NavLink to='/mobiles'>Mobile</NavLink>
-         <ul className="dropdown">
-            <li><NavLink to= "/samsung"> Samsung</NavLink></li>
-            <li><NavLink to= "/vivo"> Vivo</NavLink></li>
-            <li><NavLink to= "/realme"> Realme</NavLink></li>
-            <li><NavLink to= "/oneplus">One plus </NavLink></li>
-         </ul>
-         </li>
-        <li><NavLink to='/watches'>Watches</NavLink>
-        <ul className="dropdown">
-            <li><NavLink to= "/applewatches"> Apple</NavLink></li>
-            <li><NavLink to= "/noise">Noise </NavLink></li>
-            <li><NavLink to= "/boatwatch">Boat </NavLink></li>
-           <li><NavLink to= "/samsungwatches">Samsung </NavLink></li>
-         </ul>
-        </li>
-        <li><NavLink to='/headset'>Headset</NavLink>
-        <ul className="dropdown">
-            <li>  <NavLink to= "/applebuds">Apple</NavLink></li>
-            <li><NavLink to= "/boatbuds"> Boat</NavLink> </li>
-            <li><NavLink to= "/oneplusbuds">one plus </NavLink></li>
-            <li><NavLink to= "/mivi">Mivi </NavLink> </li>
-         </ul>
-        </li>
-        <li> <NavLink to='/laptop'>Laptop</NavLink>
-        <ul className="dropdown">
-            <li><NavLink to= "/applelaptops">Apple </NavLink></li>
-            <li><NavLink to= "/lenovo"> Lenovo</NavLink> </li>
-            <li><NavLink to= "/dell"> Dell </NavLink></li>
-            <li><NavLink to= "/hp">HP </NavLink></li>
-         </ul>
-        </li>
-         </div>
+       
         <div className="searchbar">
         <input type="text" placeholder="search here.." className="search"/>
-        <img src={search} alt="not"  className="searchicon"/>
+        {/* <img src={search} alt="not"  className="searchicon"/> */}
         </div>
       <div>
         
@@ -207,8 +172,48 @@ console.log("logout sumit");
 
  <button onClick={handelClick}><img src={profile} alt='not' height='35px'/></button> 
 </div>
- 
+</div>
+<div className="componentLink">
+         <li> <NavLink to='/'>Home</NavLink></li>  
+
+         <li><NavLink to='/mobiles'>Mobile</NavLink>
+         <ul className="dropdown">
+            <li><NavLink to= "/vivo"> Vivo</NavLink></li>
+            <li><NavLink to= "/realme"> Realme</NavLink></li>
+            <li><NavLink to= "/samsung"> Samsung</NavLink></li>
+            <li><NavLink to= "/oneplus">One plus </NavLink></li>
+         </ul>
+         </li>
+        <li><NavLink to='/watches'>Watches</NavLink>
+        <ul className="dropdown">
+           
+            <li><NavLink to= "/noise">Noise </NavLink></li>
+            <li><NavLink to= "/boatwatch">Boat </NavLink></li>
+            <li><NavLink to= "/applewatches"> Apple</NavLink></li>
+           <li><NavLink to= "/samsungwatches">Samsung </NavLink></li>
+         </ul>
+        </li>
+        <li><NavLink to='/headset'>Headset</NavLink>
+        <ul className="dropdown">
+          
+            <li><NavLink to= "/boatbuds"> Boat</NavLink> </li>
+            <li><NavLink to= "/mivi">Mivi </NavLink> </li>
+            <li><NavLink to= "/oneplusbuds">one plus </NavLink></li>
+            <li>  <NavLink to= "/applebuds">Apple</NavLink></li>
+           
+         </ul>
+        </li>
+        <li> <NavLink to='/laptop'>Laptop</NavLink>
+        <ul className="dropdown">
+            <li><NavLink to= "/applelaptops">Apple </NavLink></li>
+            <li><NavLink to= "/lenovo"> Lenovo</NavLink> </li>
+            <li><NavLink to= "/dell"> Dell </NavLink></li>
+            <li><NavLink to= "/hp">HP </NavLink></li>
+         </ul>
+        </li>
+         </div>
         </div>
+        
         <div className='profile'>
            <button onClick={handleClose}>X</button>
             <h2><Link className='prfLink' to='/signup' onClick={()=>{

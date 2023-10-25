@@ -28,14 +28,14 @@ const ProductDetails = () => {
   };
 
   return ( 
-    <div className="singleproduct">
+    <div className="singleproduct"> 
       <div className="p_image">
         <img className="p_image2" src={item.image} alt="not" />
       </div>
       <div className="highlights">
         <h1>{item.product_tittle}</h1>
-        <h3 className="price">Price: ₹{item.price}</h3>
-        <h4>{item.highlights}</h4>
+        <h1 className="price">Price: ₹{item.price}</h1>
+        <p>{item.highlights.slice(0,800)}</p>
         <button className="btn btn2" onClick={submit}>
           Add To Cart
         </button>

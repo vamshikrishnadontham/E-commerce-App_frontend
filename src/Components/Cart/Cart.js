@@ -1,10 +1,11 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import './cart.css';
 const Cart = (props) => {
   const [data, setData] = useState([]);
   let [temp,setTemp]=useState(0);
+ 
   useEffect(() => {
     const token = localStorage.getItem('mahesh');
     axios
@@ -19,7 +20,9 @@ const Cart = (props) => {
       .catch((err) => {
         console.log('error', err);
       });
-      console.log("data ...........=====",data.length);
+      // console.log("data ...........=====",data.length);
+      // localStorage.setItem("cartCount",data.length);
+      
   }, [temp]);
 
   const updateQuantity = (index, newQuantity) => {
@@ -30,7 +33,8 @@ const Cart = (props) => {
 
   let price = 0;
   async function displayRazorpay(){
-  let response=await axios.post("http://localhost:5000/checkout",{"amount":500})
+    
+  let response=await axios.post("http://localhost:5000/checkout",{"amount":(price-(price/10)+40)*100})
   let order_id=response.data.order.id
   console.log("orrder id",order_id);
  
@@ -45,6 +49,8 @@ const options ={
     alert(response.razorpay_payment_id)
     alert(response.razorpay_order_id)
     alert(response.razorpay_signature)
+    setTemp(temp+1)
+    alert('Order placed successfully');
     const paymentOption={
       razorpay_payment_id:response.razorpay_payment_id,
       razorpay_order_id:response.razorpay_order_id,
@@ -56,7 +62,7 @@ const options ={
    prefill:{ 
     name:"mahesh",
     email:"mahesh@gmail.com", 
-    contact:9347888888 
+    contact:9347884154 
    }
 }
 let rzp=new window.Razorpay(options);
@@ -69,15 +75,16 @@ axios
   .then((res) => res.data)
   .then((res) => console.log('removed item===', res))
   .catch((err) => console.log('error', err));
-alert('Order placed successfully');
-setTemp(temp+1)
+  setTemp(temp+1)
  }
-
+// totalprice=(price-(price/10)+40)
   return (
     <>
-     <h1>My Cart</h1>
+   {}
+    <h1>My Cart</h1>
+    {/* {(data&&data)? <div>hi</div>:<p>hello</p>} */}
     {
-      data.length===0? <div><h1>Cart is empty</h1></div>:
+      (data&&data)&&data.length===0? <div><h1>Cart is empty</h1></div>:
       <div className="cartcontainer">
         <div className="cart">
           <div className="cart-products">
@@ -87,10 +94,10 @@ setTemp(temp+1)
                 return (
                   <div key={index} style={{ border: '2px solid grey' }}>
                     <div className="card">
-                      <img src={item.image} alt="not" height="200px" />
-                      <div>
+                      <img src={item.image} alt="not" className='cart_image' />
+                      <div className='product_info'>
                         <h2 className='product_tittle'>{item.product_tittle}</h2>
-                        <h3 className="price">₹{item.price}</h3>
+                        <h3 className="price">Price: ₹{item.price}</h3>
                         <div className="item_quantity">
                           <b>quantity</b>
                           <button
@@ -110,12 +117,11 @@ setTemp(temp+1)
                           >
                             +
                           </button>
+
                         </div>
-                      </div>
-                    </div>
-                    <div>
-                      <button
-                        className="btn"
+                        <br></br>
+                        <button
+                        className="btn rm_btn"
                         onClick={() => {
                           const token = localStorage.getItem('mahesh');
                           axios
@@ -123,15 +129,19 @@ setTemp(temp+1)
                               headers: { authorization: token },
                             })
                             .then((res) => res.data)
-                            .then((res) => {setTemp(temp+1)
-                              return console.log('removed item===', res)})
+                            .then((res) => {
+                              alert("item removed succesfully")
+                              return setTemp(temp+1)
+                              })
                             .catch((err) => console.log('error', err));
-                          
+                            return console.log('removed item===')
                         }}
                       >
                         Remove
                       </button>
-            {/* <button onClick={}> Buy now</button> */}
+                      </div>
+                    </div>
+                    <div>
                     </div>
                   </div>
                 );
@@ -139,23 +149,35 @@ setTemp(temp+1)
           </div>
           
             <button
-              id="order"
+             style={{backgroundColor:"yellow", color:"black"}}
+              id="orderMobile_view"
               className="btn"
               onClick={displayRazorpay}
             >
               Place Order
-            </button>
-         
+            </button> 
         </div>
         <div className="totalprice-container">
+          <div style={{backgroundColor:"lightgrey"}}>
           <h4>Price: ₹{price}</h4>
           <h4>Discount: ₹{price / 10}</h4>
           <h4>Delivery charges: ₹40</h4>
-          <hr />
-          <h3 id="tprice">Total Price: ₹{price - price / 10 + 40}</h3>
+          <p id="tprice">Total Price: ₹{price - price / 10 + 40}</p>
+          </div>
+
+       
+          <button
+              id="order"
+              className="btn"
+              onClick={displayRazorpay}
+              style={{backgroundColor:"yellow", color:"black"}}
+            >
+              Place Order
+            </button>
+            </div>
         </div>
-      </div>
 }
+  
     </>
   )
 };

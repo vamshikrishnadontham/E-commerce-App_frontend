@@ -9,10 +9,8 @@ import { Route,Routes } from "react-router-dom"
 import ProfileComp from "./login-signup/ProfileComp"
 import Realme from "./product_pages/mobiles/Realme"
 import Vivo from "./product_pages/mobiles/Vivo"
-import SingleProductComp from "./SingleProductComp"
 import BoatWatch from "./product_pages/Watches/BoatWatch"
 import Noise from "./product_pages/Watches/Noise"
-import Mivi from "./product_pages/Headset/MiviHeadset"
 import BoatHeadset from "./product_pages/Headset/BoatHeadset"
 import AppleLaptop from "./product_pages/Laptop/AppleLaptop"
 import Lenovo from "./product_pages/Laptop/Lenovo"
@@ -20,6 +18,15 @@ import ProductDetails from "./ProductDetails.js"
 import LaptopDetails from "./LaptopDetails"
 import Cart from "../Cart/Cart"
 import Orderplaced from "../Cart/Orderplaced"
+import OnePlus from "./product_pages/mobiles/OnePlus"
+import Samsung from "./product_pages/mobiles/Samsung"
+import AppleBuds from "./product_pages/Headset/AppleBuds"
+import OnePlusBuds from "./product_pages/Headset/OnePlusBuds"
+import AppleWatch from "./product_pages/Watches/AppleWatch"
+import SamsungWatch from "./product_pages/Watches/SamsungWatch"
+import Dell from "./product_pages/Laptop/Dell"
+import Hp from "./product_pages/Laptop/Hp"
+import MiviBuds from "./product_pages/Headset/MiviBuds"
 const RouteComp=()=>{
     return(
         <>
@@ -40,23 +47,23 @@ const RouteComp=()=>{
 
             <Route path="/vivo" element ={<Vivo/>}/>
             <Route path="/realme" element ={<Realme/>}/>
-            <Route path="/oneplus" element ={<SingleProductComp/>}/>
-            <Route path="/samsung" element ={<SingleProductComp/>}/>
+            <Route path="/oneplus" element ={<OnePlus/>}/>
+            <Route path="/samsung" element ={<Samsung/>}/>
 
-            <Route path="/applewatches" element ={<SingleProductComp/>}/>
+            <Route path="/applewatches" element ={<AppleWatch/>}/>
             <Route path="/noise" element ={<Noise/>}/>
             <Route path="/boatwatch" element ={<BoatWatch/>}/>
-            <Route path="/samsungwatches" element ={<SingleProductComp/>}/>
+            <Route path="/samsungwatches" element ={<SamsungWatch/>}/>
              
-            <Route path="/applebuds" element ={<SingleProductComp/>}/>
+            <Route path="/applebuds" element ={<AppleBuds/>}/>
             <Route path="/boatbuds" element ={<BoatHeadset/>}/>
-            <Route path="/oneplusbuds" element ={<SingleProductComp/>}/>
-            <Route path="/mivi" element ={<Mivi/>}/>
+            <Route path="/oneplusbuds" element ={<OnePlusBuds/>}/>
+            <Route path="/mivi" element ={<MiviBuds/>}/>
 
             <Route path="/applelaptops" element ={<AppleLaptop/>}/>
             <Route path="/lenovo" element ={<Lenovo/>}/>
-            <Route path="/dell" element ={<SingleProductComp/>}/>
-            <Route path="/hp" element ={<SingleProductComp/>}/>
+            <Route path="/dell" element ={<Dell/>}/>
+            <Route path="/hp" element ={<Hp/>}/>
         </Routes>
         </>
     )

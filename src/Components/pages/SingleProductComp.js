@@ -20,7 +20,7 @@ const SingleProductComp=(props)=>{
                 return (
                     <div className="gen" key={index}>
                     <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
-                    <h2>{item.Pruduct_tittle}</h2>
+                    <h2>{item.product_tittle}</h2>
                 <h3  className="price">Price:₹{item.price}</h3>
                 <Link className="addtocartbtn" to='/productdetails' state={{index:item}} >  <button className='btn'>Add To Cart</button>
                 </Link>

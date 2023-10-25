@@ -1,8 +1,8 @@
 import React from 'react'
 import SingleProductComp from '../../SingleProductComp'
-const Mivi=()=> {
-   const product="miviheadset"
-    const category="headset"
+const SamsungWatch=()=> {
+   const product="samsungwatch"
+    const category="watches"
     return (
         <div>
             <SingleProductComp value={category} product={product}/>
@@ -10,4 +10,4 @@ const Mivi=()=> {
     )
 }
 
-export default Mivi
+export default SamsungWatch

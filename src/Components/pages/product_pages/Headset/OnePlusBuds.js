@@ -1,7 +1,7 @@
 import React from 'react'
 import SingleProductComp from '../../SingleProductComp'
-const MiviHeadset=()=> {
-   const product="miviheadset"
+const OnePlusBuds=()=> {
+   const product="oneplusheadset"
     const category="headset"
     return (
         <div>
@@ -10,4 +10,4 @@ const MiviHeadset=()=> {
     )
 }
 
-export default MiviHeadset
+export default OnePlusBuds

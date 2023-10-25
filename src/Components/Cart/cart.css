@@ -3,6 +3,14 @@
     flex-wrap: nowrap;
     gap: 40px;
     justify-content: center;
+   
+    text-align: center;
+}
+.product_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .card{
     display: flex;
@@ -16,11 +24,15 @@
 }
 .item_quantity{
     border: 2px solid black;
-    width: 18vw;
+    width: 17vw;
     font-size:x-large;
     border-radius: 14px;
     padding: 3px;
     background-color: rgb(202, 212, 212);
+}
+.cart_image{
+    width: 20vw;
+    height: 30vh;
 }
 .cntr_btn{
 font-size: x-large;
@@ -46,15 +58,17 @@ padding-right:10px ;
   
     /* border: 2px solid rgb(10, 10, 10); */
 }
+#orderMobile_view{
+    display:none;
+}
 #order{
+    /* display: block; */
     width:300px;
     height: 10vh;
 }
 .totalprice-container{
-    margin-top: 100px;
     width: 30%;
     height: 40vh;
-    background-color: rgb(200, 206, 204);
     font-size: x-large;
 }
 #tprice{
@@ -68,23 +82,37 @@ padding-right:10px ;
         width: 100vw;
         justify-content: center;
     }
+    .cart_image{
+        width: 70vw;
+    }
     .cart{
         width: 95vw;
     }
+    .rm_btn{
+        width: 250px;
+    }
     .card{
         flex-direction:column;
+        justify-content: center;
+        align-items: center;
     }
     .product_tittle{
         width: 85vw;
     }
     .item_quantity{
-        width: 70vw;
+        width: 270px;
     }
     .totalprice-container{
         width: 95vw;
         margin-bottom: 10px;
     }
     #order{
+         display: none;
+        margin-top: 20px;
+        width: 90vw;
+    }
+    #orderMobile_view{
+        display: block;
         margin-top: 20px;
         width: 90vw;
     }

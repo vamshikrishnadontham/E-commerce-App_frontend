@@ -5,7 +5,7 @@ const Mobiles=()=>{
 const category="mobiles"
     return(
         <>
-        <div>mobiles page</div> 
+        {/* <div>mobiles page</div>  */}
         <GenericComp data={category}/>
         </>
     )

@@ -6,6 +6,7 @@ import {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import SliderComp from "../Carousel/SliderComp";
 import TrendingSlider from "../Carousel/TrendingSlider";
+import bigbillion from "../assets/1a_54.avif"
 const Home = () => { 
   const [mobile,setMobile]=useState("");
   const [watch,setWatch]=useState("");
@@ -109,7 +110,14 @@ const Home = () => {
         </div>
       </div>
       <TrendingSlider value={watch}/>
-      {/* <TSlider/> */}
+    <div >
+      <h1>Big Billion Days are comming soon</h1>
+      
+      <img className="bigbillionday"
+       src={bigbillion}
+       alt="not"/>
+      
+   </div>
       <div className="services">
         <div className="s-box">
           <img src={shipping} alt="not" />

@@ -234,10 +234,10 @@ const responsive = {
   ]
 return(
   <div style={{ margin:"10px"}}>
-    {/* <h1>Trending Products</h1> */}
+    <h1>Trending Products</h1>
 <Carousel responsive={responsive}>
   {data.map((item) => (
-  <div className="card2" >
+  <div className="card2" style={{backgroundColor:"light-grey"}} >
     <div >
     <p><img className="product--image" src={item.image}  alt="not"/></p>
     <h2>{item.product_tittle.slice(0,50)}</h2>
