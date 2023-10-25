@@ -1,13 +1,20 @@
 
 import React, { useEffect, useState} from 'react';
+import { useNavigate,useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './cart.css';
 const Cart = (props) => {
+  const navigate=useNavigate();
   const [data, setData] = useState([]);
   let [temp,setTemp]=useState(0);
- 
+  let [cartcnt,setCart]=useState()
+  const location = useLocation();
+  let cartCount = location.state ? location.state.cartCount || 0 : 0; 
+  
+  // Check for null or undefined before accessing cartCount
   useEffect(() => {
-    const token = localStorage.getItem('mahesh');
+    let token = localStorage.getItem('mahesh');
+    // setCart(cartCount);
     axios
       .get('https://e-commerce-app-6v8f.onrender.com/getcartdetails', {
         headers: { authorization: token },
@@ -34,7 +41,7 @@ const Cart = (props) => {
   let price = 0;
   async function displayRazorpay(){
     
-  let response=await axios.post("http://localhost:5000/checkout",{"amount":(price-(price/10)+40)*100})
+  let response=await axios.post("https://e-commerce-app-6v8f.onrender.com/checkout",{"amount":(price-(price/10)+40)*100})
   let order_id=response.data.order.id
   console.log("orrder id",order_id);
  
@@ -51,12 +58,14 @@ const options ={
     alert(response.razorpay_signature)
     setTemp(temp+1)
     alert('Order placed successfully');
+    navigate('/orderplaced')
+    window.location.reload()
     const paymentOption={
       razorpay_payment_id:response.razorpay_payment_id,
       razorpay_order_id:response.razorpay_order_id,
       razorpay_signature:response.razorpay_signature
     }
-    axios.post("http://localhost:5000/paymentverification",paymentOption)
+    axios.post("https://e-commerce-app-6v8f.onrender.com/paymentverification",paymentOption)
    },
   //  callback_url:"http://localhost:5000/paymentverification",
    prefill:{ 
@@ -76,15 +85,18 @@ axios
   .then((res) => console.log('removed item===', res))
   .catch((err) => console.log('error', err));
   setTemp(temp+1)
+  
  }
 // totalprice=(price-(price/10)+40)
   return (
     <>
    {}
     <h1>My Cart</h1>
+    <div id="cartempty"><h1>Cart is Empty</h1></div>
     {/* {(data&&data)? <div>hi</div>:<p>hello</p>} */}
     {
-      (data&&data)&&data.length===0? <div><h1>Cart is empty</h1></div>:
+      
+      (cartCount===0||0)? (<div><h1>Cart is empty</h1></div>):
       <div className="cartcontainer">
         <div className="cart">
           <div className="cart-products">
@@ -131,6 +143,8 @@ axios
                             .then((res) => res.data)
                             .then((res) => {
                               alert("item removed succesfully")
+
+                              window.location.reload()
                               return setTemp(temp+1)
                               })
                             .catch((err) => console.log('error', err));

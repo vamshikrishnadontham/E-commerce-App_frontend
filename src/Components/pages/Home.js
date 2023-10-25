@@ -35,7 +35,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Mobiles</h1>
         <div className="container2">
           {
-            mobile&&mobile.filter((item,index)=>index%3===0).map((item,index)=>{
+            mobile&&mobile.filter((item,index)=>index%6===0).map((item,index)=>{
               
                 return (
                   <div className="gen" key={index}>
@@ -54,7 +54,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Watches</h1>
         <div className="container2">
           {
-            watch&&watch.filter((item,index)=>index%3===0).map((item,index)=>{
+            watch&&watch.filter((item,index)=>index%5===0).map((item,index)=>{
               
                 return (
                   <div className="gen" key={index}>
@@ -73,7 +73,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Headset</h1>
         <div className="container2">
           {
-            headset&&headset.filter((item,index)=>index%3===0).map((item,index)=>{
+            headset&&headset.filter((item,index)=>index%5===0).map((item,index)=>{
               
                 return (
                   <div className="gen" key={index}>
@@ -92,7 +92,7 @@ const Home = () => {
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Laptops</h1>
         <div className="container2">
           {
-            laptop&&laptop.filter((item,index)=>index%3===0).map((item,index)=>{
+            laptop&&laptop.filter((item,index)=>index%5===0).map((item,index)=>{
              
                 return (
                   <div className="gen" key={index}>

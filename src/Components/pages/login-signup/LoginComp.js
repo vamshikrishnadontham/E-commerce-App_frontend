@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useContext, useState } from "react"
+import {useState } from "react"
 import { useNavigate,Link } from "react-router-dom";
-import Global from "../../../Global";
+// import Global from "../../../Global";
 const LoginComp=()=>{
     const [token,setToken]=useState('');
     const navigate=useNavigate();
-   const Gdata=useContext(Global);
+//    const Gdata=useContext(Global);
     const userData={
         email:'',
         password:''
@@ -29,13 +29,14 @@ const LoginComp=()=>{
         return res})
     .catch((err)=>console.log({error:err}))
       alert(data.msg)
-        var datainfo={...Gdata,"token":token,"username":data.username,"islogin":data.islogin}
-        Gdata.updateGdata(datainfo) 
+        // var datainfo={...Gdata,"token":token,"username":data.username,"islogin":data.islogin}
+        // Gdata.updateGdata(datainfo) 
     setToken(data.token)
     
    
     console.log("username",data.username,"islogin",data.islogin);
     navigate("/");
+    window.location.reload();
     }
    
     if(token&&token){

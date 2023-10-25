@@ -6,6 +6,9 @@
    
     text-align: center;
 }
+#cartempty{
+    display: none;
+}
 .product_info{
     display: flex;
     flex-direction: column;

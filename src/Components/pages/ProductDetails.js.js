@@ -22,6 +22,7 @@ const ProductDetails = () => {
       // setResdata(response.data.msg);
       console.log("resdata======",response.data.msg);
       alert(response.data.msg);
+      window.location.reload();
     } catch (err) {
       console.error("Error:",err);
     }
