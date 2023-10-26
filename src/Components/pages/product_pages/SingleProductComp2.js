@@ -19,7 +19,7 @@ const SingleProductComp2=(props)=>{
              value&&value.filter((item)=>item.brand===props.product).map((item,index)=>{
                 return (
                     <div className="laptop_container" key={index}>
-                   <Link to='/laptopdetails' state={{index:item}} > <img src={item.image} alt='not' width='300px' height='200px' />
+                   <Link to='/laptopdetails' state={{index:item}} > <img src={item.image} alt='not'className="images2" />
                    </Link>
                     <h2>{item.product_tittle}</h2>
                 <h3  className="price">Price:₹{item.price}</h3> 
