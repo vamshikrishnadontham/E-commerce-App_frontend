@@ -21,7 +21,7 @@ const SingleProductComp2=(props)=>{
                     <div className="laptop_container" key={index}>
                    <Link to='/laptopdetails' state={{index:item}} > <img src={item.image} alt='not'className="images2" />
                    </Link>
-                    <h2>{item.product_tittle}</h2>
+                    <h2>{item.product_tittle.slice(0,50)}</h2>
                 <h3  className="price">Price:₹{item.price}</h3> 
                 <Link className="addtocartbtn" to='/laptopdetails' state={{index:item}} >
                     <button className='btn adbtn'>Add To Cart</button>
