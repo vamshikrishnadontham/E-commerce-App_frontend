@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SliderComp from "../Carousel/SliderComp";
 import TrendingSlider from "../Carousel/TrendingSlider";
 import bigbillion from "../assets/1a_54.avif"
+import Navbar from "./Navbar";
 const Home = () => { 
   const [mobile,setMobile]=useState("");
   const [watch,setWatch]=useState("");
@@ -30,6 +31,7 @@ const Home = () => {
 
   return (
     <>
+    <Navbar/>
     <SliderComp/>
       <div className="allCategory">
         <h1 style={{border:"1px solid grey",backgroundColor:"skyblue"}}>Mobiles</h1>
@@ -41,7 +43,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img className="images" src={item.image} alt='not' width='200px' height='200px' /></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h4>{item.product_tittle.slice(0,50)}</h4>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -60,7 +62,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img className="images" src={item.image} alt='not' /></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h4>{item.product_tittle.slice(0,50)}</h4>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -79,7 +81,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img src={item.image} alt='not' className="images" /></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h4>{item.product_tittle.slice(0,50)}</h4>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -98,7 +100,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img src={item.image} alt='not' className="images2"/></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h4>{item.product_tittle.slice(0,50)}</h4>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>

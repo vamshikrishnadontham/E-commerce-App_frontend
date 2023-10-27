@@ -1,9 +1,11 @@
-import {useLocation } from "react-router-dom"
+import {useLocation, useNavigate } from "react-router-dom"
 import axios from "axios";
 import { useState } from "react";
+import Navbar from "./Navbar";
 const LaptopDetails=()=>{
     const item=useLocation().state.index;
     console.log("itme_id",item);
+    const navigate=useNavigate();
     const token = localStorage.getItem("mahesh");
     const [resdata, setResdata] = useState("");
     const submit = async () => {
@@ -18,22 +20,27 @@ const LaptopDetails=()=>{
         setResdata(response.data);
         console.log(resdata);
         alert(response.data.msg);
+        navigate(`/${item.brand}`)
       } catch (err) {
         console.error("Error:", err);
       }
     };
     return(
+      <>
+      <Navbar/>
         <div className="singleproduct">
             <div className="p_image">
         <img className="p_image3" src={item.image} alt="not" /></div>
-<div className="highlights"><h1>{item.product_tittle}</h1>
-<h1 className="price">Price: ₹{item.price}</h1>
-        <p>{item.highlights.slice(0,800)}</p>
+<div className="highlights">
+  <h2>{item.product_tittle}</h2>
+<h3 className="price">Price: ₹{item.price}</h3>
+        <p>{item.highlights.slice(0,550)}</p>
         <button className="btn btn2" onClick={submit}>
           Add To Cart
         </button>
 </div>
         </div> 
+        </>
     )
 }
 export default LaptopDetails

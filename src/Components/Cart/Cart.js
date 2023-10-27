@@ -1,20 +1,18 @@
 
 import React, { useEffect, useState} from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate,Link} from 'react-router-dom';
 import axios from 'axios';
 import './cart.css';
+import Navbar from '../pages/Navbar';
+import emptycart from './EmptyCart_.png'
 const Cart = (props) => {
   const navigate=useNavigate();
   const [data, setData] = useState([]);
   let [temp,setTemp]=useState(0);
  
-  const location = useLocation();
-  let cartCount = location.state ? location.state.cartCount || 0 : 0; 
-  
   // Check for null or undefined before accessing cartCount
   useEffect(() => {
     let token = localStorage.getItem('mahesh');
-    
     axios
       .get('https://e-commerce-app-6v8f.onrender.com/getcartdetails', {
         headers: { authorization: token },
@@ -27,8 +25,7 @@ const Cart = (props) => {
       .catch((err) => {
         console.log('error', err);
       });
-      // console.log("data ...........=====",data.length);
-      // localStorage.setItem("cartCount",data.length);
+     
       
   }, [temp]);
 
@@ -58,9 +55,8 @@ const options ={
     alert(response.razorpay_signature)
     setTemp(temp+1)
     alert('Order placed successfully');
-    // navigate('/orderplaced')
-    navigate("/")
-    window.location.reload()
+    navigate('/orderplaced')
+    
     const paymentOption={
       razorpay_payment_id:response.razorpay_payment_id,
       razorpay_order_id:response.razorpay_order_id,
@@ -88,31 +84,37 @@ axios
   setTemp(temp+1)
   
  }
-// totalprice=(price-(price/10)+40)
+
   return (
     <>
-   {}
+    <Navbar/>
     <h1>My Cart</h1>
-    <div id="cartempty"><h1>Cart is Empty</h1></div>
-    {/* {(data&&data)? <div>hi</div>:<p>hello</p>} */}
+    <div id="cartempty"><Link to='/'>
+       <img  className='cartisempty' src={emptycart} alt='not found'/> </Link></div>
     {
-      
-      (cartCount===0||0)? (<div><h1>Cart is empty</h1></div>):
-      <div className="cartcontainer">
-        <div className="cart">
+      (data&&data.length===0)? (<div> 
+        <h1>Loading....</h1>
+      </div>):
+      <div  className="cartcontainer">
+     
           <div className="cart-products">
             {data &&
               data.map((item, index) => {
                 price = price + (item.price*item.quantity);
                 return (
-                  <div key={index} style={{ border: '2px solid grey' }}>
-                    <div className="card">
+                  
+                    <div className="card" key={index} >
+                    <div className='ttemp'>
                       <img src={item.image} alt="not" className='cart_image' />
-                      <div className='product_info'>
-                        <h2 className='product_tittle'>{item.product_tittle}</h2>
-                        <h3 className="price">Price: ₹{item.price}</h3>
-                        <div className="item_quantity">
+                        <div>
+                        <h4 className='product_tittle'>{item.product_tittle}</h4>
+                        <h4 className="price">Price: ₹{item.price}</h4>
+                        </div>
+                      </div>
+                      <div className='secondtemp'>
+                      <div className="item_quantity">
                           <b>quantity</b>
+                          <div>
                           <button
                             className="cntr_btn"
                             onClick={() => {
@@ -130,9 +132,8 @@ axios
                           >
                             +
                           </button>
-
-                        </div>
-                        <br></br>
+                          </div>
+                        </div> 
                         <button
                         className="btn rm_btn"
                         onClick={() => {
@@ -144,9 +145,20 @@ axios
                             .then((res) => res.data)
                             .then((res) => {
                               alert("item removed succesfully")
-
-                              // window.location.reload()
-                              return setTemp(temp+1)
+                              let token = localStorage.getItem('mahesh');
+                              axios
+                                .get('https://e-commerce-app-6v8f.onrender.com/getcartdetails', {
+                                  headers: { authorization: token },
+                                })
+                                .then((res)=>res.data)
+                                .then((data)=>{
+                                    if(data[0].cart.length===0){
+                                      navigate('/orderplaced')
+                                   
+                                }
+                                   
+                                })
+                               setTemp(temp+1)
                               })
                             .catch((err) => console.log('error', err));
                             return console.log('removed item===')
@@ -155,14 +167,14 @@ axios
                         Remove
                       </button>
                       </div>
+
                     </div>
-                    <div>
-                    </div>
-                  </div>
+                   
+                 
                 );
               })}
-          </div>
           
+          </div>
             <button
              style={{backgroundColor:"yellow", color:"black"}}
               id="orderMobile_view"
@@ -171,8 +183,8 @@ axios
             >
               Place Order
             </button> 
-        </div>
-        <div className="totalprice-container">
+        
+        <div id='pricecontaineer' className="totalprice-container">
           <div style={{backgroundColor:"lightgrey"}}>
           <h4>Price: ₹{price}</h4>
           <h4>Discount: ₹{price / 10}</h4>

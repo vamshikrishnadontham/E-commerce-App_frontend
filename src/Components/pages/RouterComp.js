@@ -6,7 +6,7 @@ import Laptop from "./Laptop"
 import LoginComp from './login-signup/LoginComp'
 import RegisterComp from './login-signup/RegisterComp'
 import { Route,Routes } from "react-router-dom"
-import ProfileComp from "./login-signup/ProfileComp"
+// import ProfileComp from "./login-signup/ProfileComp"
 import Realme from "./product_pages/mobiles/Realme"
 import Vivo from "./product_pages/mobiles/Vivo"
 import BoatWatch from "./product_pages/Watches/BoatWatch"
@@ -15,6 +15,7 @@ import BoatHeadset from "./product_pages/Headset/BoatHeadset"
 import AppleLaptop from "./product_pages/Laptop/AppleLaptop"
 import Lenovo from "./product_pages/Laptop/Lenovo"
 import ProductDetails from "./ProductDetails.js"
+import TempProduct from "./TempProduct"
 import LaptopDetails from "./LaptopDetails"
 import Cart from "../Cart/Cart"
 import Orderplaced from "../Cart/Orderplaced"
@@ -39,7 +40,8 @@ const RouteComp=()=>{
             <Route path="/login" element={<LoginComp/>}/>
             <Route path="/signup" element={<RegisterComp/>}/>
             
-            <Route path="/profile" element={<ProfileComp/>}/>
+            {/* <Route path="/profile" element={<ProfileComp/>}/> */}
+            <Route path="/productinfo" element={<TempProduct/>}/>
             <Route path="/productdetails" element={<ProductDetails/>}/>
             <Route path='/laptopdetails' element={<LaptopDetails/>}/>
             <Route path="/cart" element={<Cart/>}/>
@@ -50,20 +52,20 @@ const RouteComp=()=>{
             <Route path="/oneplus" element ={<OnePlus/>}/>
             <Route path="/samsung" element ={<Samsung/>}/>
 
-            <Route path="/applewatches" element ={<AppleWatch/>}/>
-            <Route path="/noise" element ={<Noise/>}/>
+            <Route path="/applewatch" element ={<AppleWatch/>}/>
+            <Route path="/noisewatch" element ={<Noise/>}/>
             <Route path="/boatwatch" element ={<BoatWatch/>}/>
-            <Route path="/samsungwatches" element ={<SamsungWatch/>}/>
+            <Route path="/samsungwatch" element ={<SamsungWatch/>}/>
              
-            <Route path="/applebuds" element ={<AppleBuds/>}/>
-            <Route path="/boatbuds" element ={<BoatHeadset/>}/>
-            <Route path="/oneplusbuds" element ={<OnePlusBuds/>}/>
-            <Route path="/mivi" element ={<MiviBuds/>}/>
+            <Route path="/appleheadset" element ={<AppleBuds/>}/>
+            <Route path="/boatheadset" element ={<BoatHeadset/>}/>
+            <Route path="/oneplusheadset" element ={<OnePlusBuds/>}/>
+            <Route path="/miviheadset" element ={<MiviBuds/>}/>
 
-            <Route path="/applelaptops" element ={<AppleLaptop/>}/>
-            <Route path="/lenovo" element ={<Lenovo/>}/>
-            <Route path="/dell" element ={<Dell/>}/>
-            <Route path="/hp" element ={<Hp/>}/>
+            <Route path="/applelaptop" element ={<AppleLaptop/>}/>
+            <Route path="/lenovolaptop" element ={<Lenovo/>}/>
+            <Route path="/delllaptop" element ={<Dell/>}/>
+            <Route path="/hplaptop" element ={<Hp/>}/>
         </Routes>
         </>
     )

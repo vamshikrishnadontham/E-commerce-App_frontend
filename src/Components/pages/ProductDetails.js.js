@@ -1,6 +1,8 @@
 
 import { useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
+import { useState } from "react";
 // import { useState } from "react";
 
 const ProductDetails = () => {
@@ -8,6 +10,7 @@ const ProductDetails = () => {
   const item = useLocation().state.index;
   console.log("item=========== product details",item);
   // const [resdata, setResdata] = useState("");
+  
   const token = localStorage.getItem("mahesh");
   const submit = async () => {
     if (!token) {
@@ -22,28 +25,32 @@ const ProductDetails = () => {
 
       // setResdata(response.data.msg);
       console.log("resdata======",response.data.msg);
+      // setTemp(temp+1)
       alert(response.data.msg);
-      navigate("/");
-      window.location.reload();
+      navigate(`/${item.brand}`);
+      // window.location.reload();
     } catch (err) {
       console.error("Error:",err);
     }
   };
 
   return ( 
+    <>
+    <Navbar/>
     <div className="singleproduct"> 
       <div className="p_image">
         <img className="p_image2" src={item.image} alt="not" />
       </div>
       <div className="highlights">
-        <h1>{item.product_tittle}</h1>
-        <h1 className="price">Price: ₹{item.price}</h1>
-        <p>{item.highlights.slice(0,800)}</p>
+        <h2>{item.product_tittle}</h2>
+        <h3 className="price">Price: ₹{item.price}</h3>
+        <p>{item.highlights.slice(0,550)}</p>
         <button className="btn btn2" onClick={submit}>
           Add To Cart
         </button>
       </div>
     </div>
+    </>
   );
 };
 

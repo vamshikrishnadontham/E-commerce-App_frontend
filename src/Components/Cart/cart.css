@@ -3,11 +3,31 @@
     flex-wrap: nowrap;
     gap: 40px;
     justify-content: center;
-   
+   border: 3px solid rgb(221, 218, 218);
     text-align: center;
 }
+
+/* //////////sample.... */
+
+.ttemp{
+    display:flex;
+    flex-direction: row;
+    gap: 20px;
+    
+}
+.secondtemp{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+}
+
 #cartempty{
     display: none;
+}
+.cartisempty{
+width: 95vw;
+height: 60vh;
 }
 .product_info{
     display: flex;
@@ -18,30 +38,43 @@
 .card{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     padding: 10px;
-    gap: 30px;
-    background-color: rgb(68, 124, 137);
+    gap: 20px;
+    width: 40vw;
+
+    border-radius: 10px;
+    background-color: rgb(163, 188, 196);
 }
 .product_tittle{
     width: 20vw;
 }
 .item_quantity{
-    border: 2px solid black;
-    width: 17vw;
+    /* border: 2px solid black; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: max-content;
     font-size:x-large;
-    border-radius: 14px;
+    border-radius: 5px;
     padding: 3px;
     background-color: rgb(202, 212, 212);
 }
 .cart_image{
     width: 20vw;
     height: 30vh;
+    
+}
+.rm_btn{
+    width: 10rem;
+    height: 2.5rem;
 }
 .cntr_btn{
 font-size: x-large;
 padding-top: 3px;
 padding-left: 10px;
 padding-right:10px ;
+border: none;
 }
 /* .cart{
     width: 60%;
@@ -50,7 +83,7 @@ padding-right:10px ;
 #counter{
     padding-left: 10px;
     padding-right:10px ;
-    background-color: honeydew;
+    /* background-color: rgb(243, 244, 243); */
     color: black;
 }
 .cart-products{
@@ -66,7 +99,7 @@ padding-right:10px ;
 }
 #order{
     /* display: block; */
-    width:300px;
+    width:280px;
     height: 10vh;
 }
 .totalprice-container{
@@ -78,32 +111,55 @@ padding-right:10px ;
     background-color: black;
     color: white;
 }
+@media screen and (min-width:860px) and (max-width:930px){
+.cart_image{
+    height: 15vh;
+}
+#order{
+    height: 3rem;
+    
+}
+}
 @media screen and (min-width:300px) and (max-width:850px){
+    /* sample... */
+    .ttemp{
+       
+        flex-direction: column;
+    }
+    .secondtemp{
+       
+        flex-direction: column;
+    }
+    
     .cartcontainer{
         gap:10px ;
         flex-direction: column;
-        width: 100vw;
+        width: 93vw;
         justify-content: center;
+        border: none;
     }
     .cart_image{
         width: 70vw;
+        
     }
-    .cart{
+    /* .cart{
         width: 95vw;
-    }
+    } */
     .rm_btn{
-        width: 250px;
+        width: 220px;
     }
     .card{
         flex-direction:column;
         justify-content: center;
         align-items: center;
+        width: 94vw;
     }
     .product_tittle{
         width: 85vw;
     }
     .item_quantity{
-        width: 270px;
+        width: 220px;
+        
     }
     .totalprice-container{
         width: 95vw;

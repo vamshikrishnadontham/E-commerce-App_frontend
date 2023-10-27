@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 const SingleProductComp=(props)=>{
    const [value,setValue]=useState("");
    useEffect(()=>{
@@ -11,7 +12,8 @@ const SingleProductComp=(props)=>{
     console.log("use effect",value,props)
 
     return( 
-        
+        <>
+        <Navbar/>
         <div  className="main_cotainer">
             {/* <div className="container1"></div> */}
             <div className="container2">
@@ -20,9 +22,9 @@ const SingleProductComp=(props)=>{
                 return (
                     <div className="gen" key={index}>
                     <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
-                    <h2>{item.product_tittle}</h2>
+                    <h4>{item.product_tittle.slice(0,50)}</h4>
                 <h3  className="price">Price:₹{item.price}</h3>
-                <Link className="addtocartbtn" to='/productdetails' state={{index:item}} >  <button className='btn'>Add To Cart</button>
+                <Link className="addtocartbtn" to='/productdetails' state={{index:item}} ><button className='btn'>Add To Cart</button>
                 </Link>
                     </div>
                 )
@@ -31,6 +33,7 @@ const SingleProductComp=(props)=>{
             }
             </div>
         </div>
+        </>
     ) 
 }
 export default SingleProductComp

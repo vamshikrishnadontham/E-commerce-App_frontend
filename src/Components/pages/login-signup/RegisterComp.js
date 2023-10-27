@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Link,useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar';
 const RegisterComp=()=>{
     const navigate=useNavigate();
     let arr=[];
@@ -27,6 +28,7 @@ const RegisterComp=()=>{
     console.log(userData);
     return(
         <>
+        <Navbar/>
         <div className="body">
         <header className='header'><h1>Register</h1></header>
         <div className='parent'>

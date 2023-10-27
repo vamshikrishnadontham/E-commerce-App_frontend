@@ -16,7 +16,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 850, min: 480},
-    items: 3
+    items: 1
   },
   mobile: {
     breakpoint: { max: 480, min: 0 },
@@ -240,10 +240,10 @@ return(
   <div className="card2" style={{backgroundColor:"light-grey"}} >
     <div >
     <p><img className="product--image" src={item.image}  alt="not"/></p>
-    <h2>{item.product_tittle.slice(0,50)}</h2>
+    <h4>{item.product_tittle.slice(0,39)}</h4>
     <p className="price">Price:₹{item.price}</p>
     <Link  className="addtocartbtn" to='/productdetails' state={{index:item}} >
-      <button className='btn '>Add To Cart</button>
+      <button className='btn  '>Add To Cart</button>
       </Link>
     </div>
   </div>))}
