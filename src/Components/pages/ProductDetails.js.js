@@ -2,14 +2,13 @@
 import { useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./Navbar";
-import { useState } from "react";
-// import { useState } from "react";
+
 
 const ProductDetails = () => {
   const navigate=useNavigate();
   const item = useLocation().state.index;
   console.log("item=========== product details",item);
-  // const [resdata, setResdata] = useState("");
+ 
   
   const token = localStorage.getItem("mahesh");
   const submit = async () => {
