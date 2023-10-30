@@ -43,11 +43,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails2' state={{index:item}} >
                   <img className="images" src={item.image} alt='not' width='200px' height='200px' /></Link>
-<<<<<<< HEAD
                   <h3>{item.product_tittle.slice(0,50)}</h3>
-=======
-                  <h4>{item.product_tittle.slice(0,50)}</h4>
->>>>>>> 40794831ee1dde200ec16f81b9d8ef9e1e619628
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -66,11 +62,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails2' state={{index:item}} >
                   <img className="images" src={item.image} alt='not' /></Link>
-<<<<<<< HEAD
                   <h3>{item.product_tittle.slice(0,50)}</h3>
-=======
-                 <h4>{item.product_tittle.slice(0,50)}</h4>
->>>>>>> 40794831ee1dde200ec16f81b9d8ef9e1e619628
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -89,11 +81,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails2' state={{index:item}} >
                   <img src={item.image} alt='not' className="images" /></Link>
-<<<<<<< HEAD
                   <h3>{item.product_tittle.slice(0,50)}</h3>
-=======
-                 <h4>{item.product_tittle.slice(0,50)}</h4>
->>>>>>> 40794831ee1dde200ec16f81b9d8ef9e1e619628
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -112,11 +100,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails2' state={{index:item}} >
                   <img src={item.image} alt='not' className="images2"/></Link>
-<<<<<<< HEAD
                   <h3>{item.product_tittle.slice(0,50)}</h3>
-=======
-                  <h4>{item.product_tittle.slice(0,50)}</h4>
->>>>>>> 40794831ee1dde200ec16f81b9d8ef9e1e619628
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
