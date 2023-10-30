@@ -43,7 +43,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img className="images" src={item.image} alt='not' width='200px' height='200px' /></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h2>{item.product_tittle.slice(0,50)}</h2>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -62,7 +62,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img className="images" src={item.image} alt='not' /></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h2>{item.product_tittle.slice(0,50)}</h2>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -81,7 +81,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img src={item.image} alt='not' className="images" /></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h2>{item.product_tittle.slice(0,50)}</h2>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
@@ -100,7 +100,7 @@ const Home = () => {
                   <div className="gen" key={index}>
                  <Link to='/productdetails' state={{index:item}} >
                   <img src={item.image} alt='not' className="images2"/></Link>
-                  <h2>{item.product_tittle}</h2>
+                  <h2>{item.product_tittle.slice(0,50)}</h2>
               <h3  className="price">Price:₹{item.price}</h3>
              
                   </div>
