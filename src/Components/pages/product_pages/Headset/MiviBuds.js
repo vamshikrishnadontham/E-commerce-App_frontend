@@ -5,6 +5,7 @@ const MiviBuds=()=> {
     const category="headset"
     return (
         <div>
+           
             <SingleProductComp value={category} product={product}/>
         </div>
     )

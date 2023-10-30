@@ -5,6 +5,7 @@ const Lenovo=()=> {
     const category="laptop"
     return (
         <div>
+         
             <SingleProductComp2 value={category} product={product}/>
         </div>
     )

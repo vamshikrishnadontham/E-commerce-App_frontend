@@ -14,6 +14,7 @@ const SingleProductComp2=(props)=>{
     return( 
         <>
            <Navbar/> 
+           <h1>{props.product}</h1>
         <div  className="main_cotainer">
             {/* <div className="container1"></div> */}
             <div className="container2">
@@ -23,7 +24,7 @@ const SingleProductComp2=(props)=>{
                     <div className="laptop_container" key={index}>
                    <Link to='/laptopdetails' state={{index:item}} > <img src={item.image} alt='not' className="images2" />
                    </Link>
-                   <h4>{item.product_tittle.slice(0,50)}</h4>
+                   <h3>{item.product_tittle.slice(0,50)}</h3>
                 <h3  className="price">Price:₹{item.price}</h3> 
                 <Link className="addtocartbtn" to='/laptopdetails' state={{index:item}} >
                     <button className='btn adbtn'>Add To Cart</button>

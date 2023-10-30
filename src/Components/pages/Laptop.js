@@ -15,6 +15,8 @@ const Laptop=()=>{
       return(
         <>
         <Navbar/>
+        <h1>Laptops</h1>
+      
         <div  className="main_cotainer">
         {/* <div className="container1"></div> */}
         <div className="container2">

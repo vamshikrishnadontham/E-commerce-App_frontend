@@ -5,6 +5,7 @@ function OnePlus() {
     const category="mobiles"
     return (
         <div>
+            
             <SingleProductComp value={category} product={product}/>
         </div>
     )

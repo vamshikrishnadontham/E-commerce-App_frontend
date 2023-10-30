@@ -15,9 +15,11 @@ import BoatHeadset from "./product_pages/Headset/BoatHeadset"
 import AppleLaptop from "./product_pages/Laptop/AppleLaptop"
 import Lenovo from "./product_pages/Laptop/Lenovo"
 import ProductDetails from "./ProductDetails.js"
+import ProductDetails2 from '../pages/ProductDetailsfolder/ProductDetailstemp'
 
 import LaptopDetails from "./LaptopDetails"
 import Cart from "../Cart/Cart"
+import Cart2 from '../Cart/Cart2Diff'
 import Orderplaced from "../Cart/Orderplaced"
 import OnePlus from "./product_pages/mobiles/OnePlus"
 import Samsung from "./product_pages/mobiles/Samsung"
@@ -32,6 +34,7 @@ const RouteComp=()=>{
     return(
         <>
         <Routes>
+            
              <Route path="/" element={<Home/>}/>
             <Route path="/headset" element={<Headset/>}/> 
             <Route path="/watches" element={<Watches/>}/>
@@ -40,10 +43,11 @@ const RouteComp=()=>{
             <Route path="/login" element={<LoginComp/>}/>
             <Route path="/signup" element={<RegisterComp/>}/>
             
-            
+            <Route path="/productdetails2" element={<ProductDetails2/>}/>
             <Route path="/productdetails" element={<ProductDetails/>}/>
             <Route path='/laptopdetails' element={<LaptopDetails/>}/>
             <Route path="/cart" element={<Cart/>}/>
+            <Route path="/cart2" element={<Cart2/>}/>
             <Route path="/orderplaced" element={<Orderplaced/>}/>
 
             <Route path="/vivo" element ={<Vivo/>}/>

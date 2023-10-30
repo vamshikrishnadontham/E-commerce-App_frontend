@@ -4,8 +4,6 @@ const Mobiles=()=>{
 const category="mobiles"
     return(
         <>
-        
-       
         <GenericComp data={category}/>
         </>
     )

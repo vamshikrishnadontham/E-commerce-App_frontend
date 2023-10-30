@@ -14,6 +14,7 @@ const SingleProductComp=(props)=>{
     return( 
         <>
         <Navbar/>
+        <h1>{props.product}</h1>
         <div  className="main_cotainer">
             {/* <div className="container1"></div> */}
             <div className="container2">
@@ -21,10 +22,10 @@ const SingleProductComp=(props)=>{
              value&&value.filter((item)=>item.brand===props.product).map((item,index)=>{
                 return (
                     <div className="gen" key={index}>
-                    <Link to='/productdetails' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
-                    <h4>{item.product_tittle.slice(0,50)}</h4>
+                    <Link to='/productdetails2' state={{index:item}} ><img src={item.image} alt='not' width='200px' height='200px' /></Link>
+                    <h3>{item.product_tittle.slice(0,50)}</h3>
                 <h3  className="price">Price:₹{item.price}</h3>
-                <Link className="addtocartbtn" to='/productdetails' state={{index:item}} ><button className='btn'>Add To Cart</button>
+                <Link className="addtocartbtn" to='/productdetails2' state={{index:item}} ><button className='btn'>Add To Cart</button>
                 </Link>
                     </div>
                 )

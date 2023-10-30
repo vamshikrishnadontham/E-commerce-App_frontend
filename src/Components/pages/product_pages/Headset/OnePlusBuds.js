@@ -5,6 +5,7 @@ const OnePlusBuds=()=> {
     const category="headset"
     return (
         <div>
+            
             <SingleProductComp value={category} product={product}/>
         </div>
     )

@@ -242,7 +242,7 @@ return(
     <p><img className="product--image" src={item.image}  alt="not"/></p>
     <h4>{item.product_tittle.slice(0,39)}</h4>
     <p className="price">Price:₹{item.price}</p>
-    <Link  className="addtocartbtn" to='/productdetails' state={{index:item}} >
+    <Link  className="addtocartbtn" to='/productdetails2' state={{index:item}} >
       <button className='btn  '>Add To Cart</button>
       </Link>
     </div>

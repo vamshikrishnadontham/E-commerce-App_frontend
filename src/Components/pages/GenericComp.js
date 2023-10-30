@@ -15,6 +15,7 @@ const GenericComp=(props)=>{
     return( 
         <>
         <Navbar/>
+        <h1>{props.data}</h1>
         <div  className="main_cotainer">
             <div className="container2">
             {
@@ -22,11 +23,11 @@ const GenericComp=(props)=>{
                 return (
                     <div className="gen" key={index}> 
                    {/* <Link to='/productdetails' state={{index:item}} > */}
-                   <Link to='/productdetails' state={{index:item}} >
+                   <Link to='/productdetails2' state={{index:item}} >
                     <img src={item.image} alt='not' className="images" /></Link>
-                    <h4>{item.product_tittle.slice(0,50)}</h4>
+                    <h3>{item.product_tittle.slice(0,50)}</h3>
                 <h3  className="price">Price:₹{item.price}</h3>
-                <Link  className="addtocartbtn" to='/productdetails' state={{index:item}} ><button className='btn adbtn'>Add To Cart</button>
+                <Link  className="addtocartbtn" to='/productdetails2' state={{index:item}} ><button className='btn adbtn'>Add To Cart</button>
                 </Link>
                     </div>
                 )

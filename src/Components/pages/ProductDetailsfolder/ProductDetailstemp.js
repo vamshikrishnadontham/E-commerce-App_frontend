@@ -1,127 +1,155 @@
 
 import { NavLink } from "react-router-dom";
-import menuButton from "./images.png";
-import cart from "../assets/Home/shopping-cart.png";
-import shopify from "../assets/Home/shopifylogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import menuButton from "../images.png";
+import cart from "../../assets/Home/shopping-cart.png";
+import shopify from "../../assets/Home/shopifylogo.png";
+
 import { useEffect, useState } from "react";
+import { useLocation,useNavigate ,Link} from "react-router-dom";
 import axios from "axios";
-// import Global from "../../Global";
-const Navbar = (props) => {
-
-  // let Gdata=useContext(Global);
+// import Navbar from "./Navbar";
+// import { useState } from "react";
+const ProductDetails = () => {
+    const navigate = useNavigate();
+    const [temp,setTemp]=useState(0)
+    const [cartCount, setCartCount] = useState(0);
+  const [count,setCount]=useState(0);
+    let cnt = 1;
   
-  const [cartCount, setCartCount] = useState(props.cartCount);
-  console.log("props",cartCount);
-  // const [loginval, setLogin] = useState(0);
-const [count,setCount]=useState(0);
-
-  const navigate = useNavigate();
-  let cnt = 1;
-
-  // ... Other code ...
-  function menubox(){
-    let menu= document.getElementById('menu_list');
-    if((cnt%2)!==0){
-       menu.style.display='block';
-       cnt++;
-    }
-    else{
-    menu.style.display='none'
-    cnt++;
-    }
-
-}
-
-const handleClose2=()=>{
-    console.log("iam closed")
-     let log_sign=document.getElementsByClassName('log_sign')[0]
-   
-    log_sign.style.display='none';
-}
-
-  // useEffect to update login status
-  useEffect(() => {
-    // Retrieve username from local storage when the component mounts
-    
-    // localStorage.setItem('loginid',0)
-    const storedUsername = localStorage.getItem("username");
-    const logval = localStorage.getItem("loginid");
-    const email = localStorage.getItem("email");
-    console.log(email);
-    // setLogin(email);
-    // 
-    if(logval){
-      document.getElementById("loginbtn").style.display="none"
-      document.getElementById('logoutbtn').style.display="block"
-      document.getElementById("loginbtn2").style.display="none"
-      document.getElementById('logoutbtn2').style.display="block"
-    }
-    if (storedUsername) {
-      document.getElementById("username").textContent = storedUsername;
-      document.getElementById("username2").textContent = storedUsername;
-    }
-
-    let token = localStorage.getItem('mahesh');
-    axios
-      .get('https://e-commerce-app-6v8f.onrender.com/getcartdetails', {
-        headers: { authorization: token },
-      })
-      .then((res) => res.data)
-      .then((data) => {
-        localStorage.setItem('email', data[0].userEmail);
-        setCartCount(data[0].cart.length) // Add quantity property to each product
-      })
-      .catch((err) => {
-        console.log('error', err);
-      });
-
-
-  }, []); // Empty dependency array means this effect runs once, when the component mounts
-
-  const HandleCart = () => {
-   
-const loginid=localStorage.getItem('loginid');
-if(cartCount<1)
-navigate('/orderplaced')
-    else if (loginid) {
-      // User is logged in, navigate to the cart page
-      navigate("/cart2", { state: { cartCount},setCartCount });
-    } else {
+    // ... Other code ...
+    function menubox(){
+      let menu= document.getElementById('menu_list');
+      if((cnt%2)!==0){
+         menu.style.display='block';
+         cnt++;
+      }
+      else{
+      menu.style.display='none'
+      cnt++;
+      }
+  
+  }
+  
+  const handleClose2=()=>{
+      console.log("iam closed")
+       let log_sign=document.getElementsByClassName('log_sign')[0]
      
-       // User is not logged in, show an alert
-      alert("Please log in first");
+      log_sign.style.display='none';
+  }
+  
+    // useEffect to update login status
+    useEffect(() => {
+      // Retrieve username from local storage when the component mounts
+      
+      // localStorage.setItem('loginid',0)
+      const storedUsername = localStorage.getItem("username");
+      const logval = localStorage.getItem("loginid");
+      const email = localStorage.getItem("email");
+      console.log(email);
+      // setLogin(email);
+      // 
+      if(logval){
+        document.getElementById("loginbtn").style.display="none"
+        document.getElementById('logoutbtn').style.display="block"
+        document.getElementById("loginbtn2").style.display="none"
+        document.getElementById('logoutbtn2').style.display="block"
+      }
+      if (storedUsername) {
+        document.getElementById("username").textContent = storedUsername;
+        document.getElementById("username2").textContent = storedUsername;
+      }
+  
+      let token = localStorage.getItem('mahesh');
+      axios
+        .get('https://e-commerce-app-6v8f.onrender.com/getcartdetails', {
+          headers: { authorization: token },
+        })
+        .then((res) => res.data)
+        .then((data) => {
+          localStorage.setItem('email', data[0].userEmail);
+          setCartCount(data[0].cart.length) // Add quantity property to each product
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
+  
+  
+    }, [temp]); // Empty dependency array means this effect runs once, when the component mounts
+  
+    const HandleCart = () => {
      
+  const loginid=localStorage.getItem('loginid');
+  if(cartCount<1)
+  navigate('/orderplaced')
+      else if (loginid) {
+        // User is logged in, navigate to the cart page
+        navigate("/cart2", { state: { cartCount},setCartCount });
+      } else {
+       
+         // User is not logged in, show an alert
+        alert("Please log in first");
+       
+      }
+    };
+  
+    const submitlogout = () => {
+      const email = localStorage.getItem("email");
+      axios
+        .post(`https://e-commerce-app-6v8f.onrender.com/logoutuser/${email}`)
+        .then((res) => res.data)
+        .then((res) => {
+         
+          localStorage.clear();
+          // Set login state to 0 (not logged in)
+          document.getElementById("username").innerHTML ="";
+          document.getElementById("username2").innerHTML = "";
+           alert(res.msg);
+           setCount(count+1)
+           document.getElementById("loginbtn").style.display="block"
+           document.getElementById('logoutbtn').style.display="none"
+           document.getElementById("loginbtn2").style.display="block"
+           document.getElementById('logoutbtn2').style.display="none"
+         
+        })
+        .catch((err) => console.log("error", err));
+     
+      
+      navigate("/");
+  
+    };
+    // Navbar code //////////
+  
+  
+  const item = useLocation().state.index;
+  console.log("item=========== product details",item);
+  const token = localStorage.getItem("mahesh");
+  const submit = async () => {
+    if (!token) {
+      alert("Please log in to add the item to the cart.");
+      return;
     }
+
+    try {
+      const response = await axios.post("https://e-commerce-app-6v8f.onrender.com/addtocart",item, {
+        headers: { authorization:token }
+      })
+
+      // setResdata(response.data.msg);
+      console.log("resdata======",response.data.msg);
+      // setTemp(temp+1)
+      alert(response.data.msg);
+    //   navigate(`/${item.brand}`);
+      // window.location.reload();
+    } catch (err) {
+      console.error("Error:",err);
+    }
+    setTemp(temp+1);
   };
 
-  const submitlogout = () => {
-    const email = localStorage.getItem("email");
-    axios
-      .post(`https://e-commerce-app-6v8f.onrender.com/logoutuser/${email}`)
-      .then((res) => res.data)
-      .then((res) => {
-       
-        localStorage.clear();
-        // Set login state to 0 (not logged in)
-        document.getElementById("username").innerHTML ="";
-        document.getElementById("username2").innerHTML = "";
-         alert(res.msg);
-         setCount(count+1)
-         document.getElementById("loginbtn").style.display="block"
-         document.getElementById('logoutbtn').style.display="none"
-         document.getElementById("loginbtn2").style.display="block"
-         document.getElementById('logoutbtn2').style.display="none"
-       
-      })
-      .catch((err) => console.log("error", err));
-   
-    
-    navigate("/");
+  return ( 
+    <>
+    {/* <Navbar/> */}
 
-  };
-
-  return (
     <div className="linkprnt">
       {/* ... Other code ... */}
       <div id='tittle'>
@@ -239,9 +267,23 @@ navigate('/orderplaced')
       {/* ... Other code ... */}
       </div>
     </div>
+
+    {/* down here product page */}
+    <div className="singleproduct"> 
+      <div className="p_image">
+        <img className="p_image2" src={item.image} alt="not" />
+      </div>
+      <div className="highlights">
+        <h2>{item.product_tittle}</h2>
+        <h3 className="price">Price: ₹{item.price}</h3>
+        <p>{item.highlights.slice(0,550)}</p>
+        <button className="btn btn2" onClick={submit}>
+          Add To Cart
+        </button>
+      </div>
+    </div>
+    </>
   );
 };
 
-export default Navbar;
-
-
+export default ProductDetails;

@@ -5,7 +5,6 @@ const Headset=()=>{
   
       return(
           <>
-         
           <GenericComp data={category}/>
           </>
       )

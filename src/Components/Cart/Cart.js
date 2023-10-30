@@ -5,7 +5,7 @@ import axios from 'axios';
 import './cart.css';
 import Navbar from '../pages/Navbar';
 import emptycart from './EmptyCart_.png'
-const Cart = (props) => {
+const Cart = () => {
   const navigate=useNavigate();
   const [data, setData] = useState([]);
   let [temp,setTemp]=useState(0);

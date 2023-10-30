@@ -5,6 +5,7 @@ const SamsungWatch=()=> {
     const category="watches"
     return (
         <div>
+            
             <SingleProductComp value={category} product={product}/>
         </div>
     )

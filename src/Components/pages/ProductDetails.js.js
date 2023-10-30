@@ -2,14 +2,12 @@
 import { useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./Navbar";
-
-
+import { useState } from "react";
 const ProductDetails = () => {
+  const [temp,setTemp]=useState(0)
   const navigate=useNavigate();
   const item = useLocation().state.index;
   console.log("item=========== product details",item);
- 
-  
   const token = localStorage.getItem("mahesh");
   const submit = async () => {
     if (!token) {
@@ -31,6 +29,7 @@ const ProductDetails = () => {
     } catch (err) {
       console.error("Error:",err);
     }
+    setTemp(temp+1);
   };
 
   return ( 

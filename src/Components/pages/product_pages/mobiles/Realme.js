@@ -5,6 +5,7 @@ const Realme=()=> {
     const category="mobiles"
     return (
         <div>
+           
             <SingleProductComp value={category} product={product}/>
         </div>
     )
