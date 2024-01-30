@@ -30,7 +30,7 @@ jobs:
 
       - name: Archive build artifacts
         run: |
-          Compress-Archive -Path C:\inetpub\wwwroot\dev\* -DestinationPath build-artifact.zip
+          Compress-Archive -Path C:\inetpub\wwwroot\dev\* -DestinationPath C:\inetpub\wwwroot\qa
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
