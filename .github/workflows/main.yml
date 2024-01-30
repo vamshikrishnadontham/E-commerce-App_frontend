@@ -29,7 +29,11 @@ jobs:
           xcopy /E /I C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend C:\inetpub\wwwroot\dev
 
       - name: Archive build artifacts
+        run: |
+          Compress-Archive -Path C:\inetpub\wwwroot\dev\* -DestinationPath build-artifact.zip
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: build-artifact
-          path: build
+          path: build-artifact.zip
