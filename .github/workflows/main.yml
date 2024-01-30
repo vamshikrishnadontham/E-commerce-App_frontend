@@ -26,14 +26,19 @@ jobs:
 
       - name: Archive build artifacts
         run: |
-          Compress-Archive -Path C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\* -DestinationPath C:\inetpub\wwwroot\dev.zip
-
-      - name: Copy Archive to C:\inetpub\wwwroot\dev\
-        run: |
-          xcopy /E /I C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\.zip C:\inetpub\wwwroot\dev\
+          Compress-Archive -Path C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\* -DestinationPath build-artifact.zip
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: dev.zip
-          path: C:\inetpub\wwwroot\dev\.zip
+          name: build-artifact
+          path: build-artifact.zip
+
+      - name: Deploy with Web Deploy
+        uses: webfactory/webdeploy-action@v1
+        with:
+          server_url: 'https://your-server-url'
+          site_name: 'YourSiteName'
+          username: ${{ secrets.WEB_DEPLOY_USERNAME }}
+          password: ${{ secrets.WEB_DEPLOY_PASSWORD }}
+          package: 'build-artifact.zip'
