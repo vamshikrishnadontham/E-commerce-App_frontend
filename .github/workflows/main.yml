@@ -24,6 +24,11 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      - name: Copy files to destination directory
+        run: |
+          mkdir C:\inetpub\wwwroot\dev  # Create destination directory if it doesn't exist
+          Copy-Item -Path ${{ myworkspace }}/build/* -Destination C:\inetpub\wwwroot\dev/ -Recurse
+
       - name: Archive build artifacts
         uses: actions/upload-artifact@v2
         with:
