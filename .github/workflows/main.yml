@@ -26,7 +26,7 @@ jobs:
 
       - name: Copy Files
         run: |
-          copy  C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend>* C:\inetpub\wwwroot\dev
+          xcopy /E /I C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend C:\inetpub\wwwroot\dev
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v2
