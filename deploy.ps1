@@ -1,15 +1,17 @@
-# Web Deploy parameters
-$serverUrl = "https://98.70.15.8"
-$siteName = "shopify"
-$username = "vamshi"
-$password = "Vamshikrishna@1"
-$packagePath = "react.zip"
+# Replace these placeholders with your actual values
+$IIS_Server = "https://98.70.15.8"
+$MSDEPLOY_PATH = "C:\Program Files\IIS\Microsoft Web Deploy V3"
 
-# Path to msdeploy executable
-$msdeployPath = "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
+# Ping the IIS server
+Test-Connection -ComputerName $IIS_Server -Count 2 -ErrorAction SilentlyContinue
 
-# Web Deploy command
-$deployCommand = "$msdeployPath -verb:sync -source:package='$packagePath' -dest:auto,ComputerName='$http://98.70.15.8:85',UserName='$vamshi',Password='$Vamshikrishna@1',AuthType='Basic',IncludeAcls='False' -setParam:name='IIS Web Application Name',value='$shopify' -enableLink:AppPool"
+# Change directory to MSDEPLOY_PATH
+Set-Location -Path $C:\Program Files\IIS\Microsoft Web Deploy V3
 
-# Execute Web Deploy command
-Invoke-Expression -Command $deployCommand
+# Define the msdeploy command
+$msdeployCommand = @"
+./msdeploy.exe -verb:sync -source:contentPath='C:/artifact/shopify.zip' -dest:auto,computerName='$98.70.15.8:8172/msdeploy.axd?site=movieinfo,userName=vamshi/Administrator,password=Vamshikrishna@1,authType=Basic' -allowUntrusted=true
+"@
+
+# Execute the msdeploy command
+Invoke-Expression -Command $msdeployCommand
