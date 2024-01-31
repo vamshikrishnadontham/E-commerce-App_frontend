@@ -29,3 +29,13 @@ jobs:
         with:
           name: shopify
           path: build
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: shopify
+          path: D:\shopifyartifacts  # Specify the directory to download the artifacts
+
+      - name: Run deploy.ps1
+        run: .\deploy.ps1
+        working-directory: artifacts  # Set the working directory to the downloaded artifacts
