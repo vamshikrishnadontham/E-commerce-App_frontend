@@ -24,20 +24,4 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Archive build artifacts
-        run: |
-          # Replace these placeholders with your actual values
-          $ArchivePath = "C:\vamshi\shopifyartifacts\shopify.zip"
-          $SourcePath = "C:\Users\vamshi\actions-runner\myworkspace\build"
-  
-          # Ensure the destination path includes a filename
-          $ArchiveDestination = Join-Path -Path $ArchivePath -ChildPath "shopify.zip"
-
-          # Create a zip archive
-          Compress-Archive -Path $SourcePath -DestinationPath $ArchiveDestination
-
-          # Upload the zip archive as an artifact in the 'shopifyartifacts' folder
-          Write-Host "Uploading artifact..."
-          Write-Host "##vso[artifact.upload containerfolder=shopifyartifacts;artifactname=shopify]$ArchiveDestination"
-
-# Rest of the workflow...
+      
