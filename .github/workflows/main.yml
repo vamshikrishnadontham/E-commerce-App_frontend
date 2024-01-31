@@ -1,9 +1,11 @@
-name: Build and Upload Shopify App
+name: Build and Deploy Shopify App
 
 on:
   push:
     branches:
       - master
+      - 'qa*'
+      - 'prod'
 
 jobs:
   build:
@@ -24,6 +26,15 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Run deploy.ps1
-        shell: powershell
-        run: .\deploy.ps1
+      - name: Run Deployment Script
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -eq 'refs/heads/master') {
+            .\dev.ps1
+          }
+          elseif ($env:GITHUB_REF -match '^refs/heads/qa') {
+            .\qa.ps1
+          }
+          elseif ($env:GITHUB_REF -eq 'refs/heads/prod') {
+            .\prod.ps1
+          }
