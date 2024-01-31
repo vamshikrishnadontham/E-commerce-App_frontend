@@ -8,8 +8,8 @@ on:
       - 'prod'
 
 jobs:
-  build:
-    runs-on: self-hosted
+  build-and-deploy:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
