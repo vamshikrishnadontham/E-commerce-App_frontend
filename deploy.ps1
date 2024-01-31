@@ -1,16 +1,17 @@
 # Replace these placeholders with your actual values
-$IIS_Server = "https://98.70.15.8"
-$MSDEPLOY_PATH = "C:\Program Files\IIS\Microsoft Web Deploy V3"
+$ArtifactPath = "C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build"
+$ArchivePath = "C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\artifacts\E-commerce-App.zip"
+$RemoteServerUrl = "https://98.70.15.8/msdeploy.axd?site=shopify"
+$RemoteServerUsername = "iis-vamshi"
+$RemoteServerPassword = "Vamshikrishna@1"
 
-# Ping the IIS server
-Test-Connection -ComputerName $IIS_Server -Count 2 -ErrorAction SilentlyContinue
+# Create a zip archive
+Compress-Archive -Path $C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\artifacts\E-commerce-App.zip -C:\inetpub\wwwroot\shopify $C:\inetpub\wwwroot\shopify
 
-# Change directory to MSDEPLOY_PATH
-Set-Location -Path $C:\Program Files\IIS\Microsoft Web Deploy V3
-
-# Define the msdeploy command
+# Deploy the archive to the remote server using msdeploy
+# Make sure to replace placeholders in the msdeploy command with your actual values
 $msdeployCommand = @"
-./msdeploy.exe -verb:sync -source:contentPath='C:/artifact/shopify.zip' -dest:auto,computerName='$98.70.15.8:8172/msdeploy.axd?site=movieinfo,userName=vamshi/Administrator,password=Vamshikrishna@1,authType=Basic' -allowUntrusted=true
+msdeploy.exe -verb:sync -source:contentPath='$C:\Users\vamshi\actions-runner\myworkspace\E-commerce-App_frontend\E-commerce-App_frontend\artifacts\E-commerce-App.zip' -dest:C:\inetpub\wwwroot\shopify,computerName='$98.70.15.8',userName='$vamshi',password='$Vamshikrishna@1',authType=Basic -allowUntrusted=true
 "@
 
 # Execute the msdeploy command
