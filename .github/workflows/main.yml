@@ -1,4 +1,4 @@
-name: Build React App
+name: Build Shopify App
 
 on:
   push:
@@ -24,4 +24,14 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      
+      - name: Archive build artifacts
+        run: |
+          # Replace these placeholders with your actual values
+          $ArchivePath = "C:\vamshi\shopifyartifacts"
+          $SourcePath = "PS C:\Users\vamshi\actions-runner\myworkspace\"
+
+          # Create a zip archive
+          Compress-Archive -Path $SourcePath -DestinationPath $ArchivePath
+
+          
+
