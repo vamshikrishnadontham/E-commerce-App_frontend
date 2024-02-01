@@ -24,6 +24,11 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      - name: Setup PowerShell
+        uses: PowerShell/setup-powershell@v1
+        with:
+          pwsh-version: '7.x'  # Specify the version you want to use
+
       - name: Run PowerShell script
-        shell: pwsh  # Use 'pwsh' for PowerShell Core, or 'powershell' for Windows PowerShell
+        shell: pwsh
         run: .\qa.ps1
