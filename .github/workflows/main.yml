@@ -53,3 +53,58 @@ jobs:
         cp artifact.zip $DEST_PATH
         cd $DEST_PATH
         7z x artifact.zip
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+
+jobs:
+  build_and_deploy:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Archive Artifact
+      run: |
+        7z a artifact.zip build
+        cp artifact.zip ${{ env.DEST_PATH }}
+
+    - name: Deploy to Dev Environment
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      env:
+        DEST_PATH: 'C:\\inetpub\\wwwroot\\dev'
+      run: |
+        cp artifact.zip $DEST_PATH
+        cd $DEST_PATH
+        7z x artifact.zip
+
+    - name: Deploy to QA Environment
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
+      env:
+        DEST_PATH: 'C:\\inetpub\\wwwroot\\qa'
+      run: |
+        # Perform manual approval steps here
+        # Then deploy to QA
+        cp artifact.zip $DEST_PATH
+        cd $DEST_PATH
+        7z x artifact.zip
