@@ -24,3 +24,9 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      - name: Run PowerShell script
+      shell: pwsh  # Use 'pwsh' for PowerShell Core, or 'powershell' for Windows PowerShell
+      run: .\qa.ps1
+
+    
+
