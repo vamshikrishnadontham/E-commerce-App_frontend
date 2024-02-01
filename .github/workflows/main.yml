@@ -24,8 +24,5 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Run qa.ps1
-        shell: pwsh
-        run: |
-          # Assuming qa.ps1 is in the root directory
-          ./qa.ps1
+      - name: Run deploy.ps1
+        shell: powershell
