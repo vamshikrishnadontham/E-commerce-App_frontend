@@ -24,5 +24,4 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Run deploy.ps1
-        shell: powershell
+   
