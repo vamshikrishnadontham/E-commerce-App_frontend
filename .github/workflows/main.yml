@@ -1,51 +1,29 @@
-name: CI/CD Workflow
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - main
-  create:
-    branches:
-      - 'release/*'
+      - master
 
 jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: DEV_ENVIRONMENT
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '14'
+        node-version: '14'  # Update this version as needed
 
-    - name: Install Dependencies
+    - name: Install dependencies
       run: npm install
 
     - name: Build
       run: npm run build
 
-    - name: Archive Artifact
+    - name: Copy artifact
       run: |
-        7z a artifact.zip build
-        cp artifact.zip ${{ env.DEST_PATH }}
-
-    - name: Deploy to Dev or QA Environment
-      run: |
-        if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-          DEST_PATH="C:\\inetpub\\wwwroot\\dev"
-        elif [[ "${{ github.ref }}" == "refs/heads/release/"* ]]; then
-          DEST_PATH="C:\\inetpub\\wwwroot\\qa"
-          # Perform manual approval steps here before deploying to QA
-        else
-          echo "Branch not supported"
-          exit 1
-        fi
-
-        cp artifact.zip $DEST_PATH
-        cd $DEST_PATH
-        7z x artifact.zip
-      env:
-        DEST_PATH: ${{ env.DEST_PATH }}
+        robocopy /mir /is /it /s /e /ndl /nfl /np /njh /njs build C:\inetpub\wwwroot\dev\
