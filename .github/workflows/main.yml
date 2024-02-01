@@ -7,23 +7,27 @@ on:
 
 jobs:
   build:
-    runs-on: DEV_ENVIRONMENT
+    runs-on: self-hosted
+    container:
+      image: windows-latest
+    labels:
+      - DEV_ENIRONMENT
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'  # Update this version as needed
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'  # Update this version as needed
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build
-      run: npm run build
+      - name: Build React App
+        run: npm run build
 
-    - name: Copy artifact
-      run: |
-        robocopy /mir /is /it /s /e /ndl /nfl /np /njh /njs build C:\inetpub\wwwroot\dev\
+      # Remove the copy step
+
+      # Add other steps as needed...
