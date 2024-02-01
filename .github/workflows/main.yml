@@ -24,11 +24,5 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Install PowerShell Core
-        run: |
-          choco install powershell-core -y
-          echo "::add-path::C:\Program Files\PowerShell\7"
-
       - name: Run qa.ps1
         shell: powershell
-        
