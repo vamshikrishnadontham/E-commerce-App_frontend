@@ -29,6 +29,6 @@ jobs:
           choco install powershell-core -y
           echo "::add-path::C:\Program Files\PowerShell\7"
 
-      - name: Run PowerShell script
-        shell: pwsh
-        run: .\qa.ps1
+      - name: Run qa.ps1
+        shell: powershell
+        
