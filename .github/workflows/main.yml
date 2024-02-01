@@ -24,11 +24,6 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Install PowerShell Core
-        run: |
-          choco install powershell-core -y
-          refreshenv  # Refresh the environment variables to include PowerShell Core in the PATH
-
       - name: Run PowerShell script
         shell: pwsh
         run: .\qa.ps1
