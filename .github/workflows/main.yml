@@ -1,40 +1,22 @@
-name: Build and Deploy Shopify App
+name: Build and Run PowerShell Script
 
 on:
   push:
     branches:
       - master
-      - 'qa*'
-      - 'prod'
 
 jobs:
-  build-and-deploy:
+  build-and-run:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      - name: Set up PowerShell
+        uses: PowerShell/setup-powershell@v0.2.0
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build React app
-        run: npm run build
-
-      - name: Run Deployment Script
-        shell: pwsh
+      - name: Build and Run PowerShell Script
         run: |
-          if ($env:GITHUB_REF -eq 'refs/heads/master') {
-            .\dev.ps1
-          }
-          elseif ($env:GITHUB_REF -match '^refs/heads/qa') {
-            .\qa.ps1
-          }
-          elseif ($env:GITHUB_REF -eq 'refs/heads/prod') {
-            .\prod.ps1
-          }
+          # Replace 'dev.ps1' with your actual PowerShell script file name
+          ./dev.ps1
