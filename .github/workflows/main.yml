@@ -1,19 +1,19 @@
-name: Build on Release Branch
+name: Release Workflow
 
 on:
   push:
     branches:
-      - 'release/*'
+      - 'release*'
 
 jobs:
   build:
-    runs-on: self-hosted-label2
+    runs-on: self-hosted
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: ['14.x']  # Use the version of Node.js that fits your React project
 
     steps:
-    - name: Checkout code
+    - name: Checkout Repository
       uses: actions/checkout@v2
 
     - name: Set up Node.js
@@ -21,12 +21,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: |
-        npm install
+    - name: Install Dependencies
+      run: npm install
 
-    - name: Build on Release Branch
-      run: |
-        npm run build
+    - name: Build React App
+      run: npm run build
 
-    # Add more steps as needed for deployment, testing, etc.
