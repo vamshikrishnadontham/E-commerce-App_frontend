@@ -28,6 +28,8 @@ jobs:
   release-job:
     runs-on: self-hosted
 
+    if: startsWith(github.ref, 'refs/heads/release')
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
