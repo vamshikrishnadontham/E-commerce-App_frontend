@@ -1,30 +1,64 @@
-name: Release Workflow
+name: CI/CD Pipeline
 
 on:
   push:
-    types:
-      - created
     branches:
-      - 'releases/**'
+      - main
+      - release/*
+      - production/*
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy (e.g., production)'
+        required: true
 
 jobs:
-  build:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        node-version: ['14.x']  # Use the version of Node.js that fits your React project
+  deploy_dev:
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Deploy to Dev
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          $destinationDirectory = "C:\inetpub\wwwroot\dev"
+          if (!(Test-Path $destinationDirectory)) {
+            New-Item -ItemType Directory -Path $destinationDirectory | Out-Null
+          }
+          Copy-Item -Path ${{ github.workspace }}\* -Destination $destinationDirectory -Recurse -Force
+          Write-Host "Deploying to Dev environment"
+  deploy_qa:
+    runs-on: windows-latest
 
-    - name: Install Dependencies
-      run: npm install
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Build React App
-      run: npm run build
+      - name: Deploy to QA
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
+        run: |
+          $destinationDirectory = "C:\inetpub\wwwroot\qa"
+          if (!(Test-Path $destinationDirectory)) {
+            New-Item -ItemType Directory -Path $destinationDirectory | Out-Null
+          }
+          Copy-Item -Path ${{ github.workspace }}\* -Destination $destinationDirectory -Recurse -Force
+          Write-Host "Deploying to QA environment"
+  deploy_production:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/production/')
+        run: |
+          $destinationDirectory = "C:\inetpub\wwwroot\production"
+          if (!(Test-Path $destinationDirectory)) {
+            New-Item -ItemType Directory -Path $destinationDirectory | Out-Null
+          }
+          Copy-Item -Path ${{ github.workspace }}\* -Destination $destinationDirectory -Recurse -Force
+          Write-Host "Deploying to Production environment"
