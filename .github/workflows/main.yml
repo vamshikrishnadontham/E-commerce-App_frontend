@@ -1,1 +1,33 @@
 
+name: Build on Release Branch
+
+on:
+  create:
+    branches:
+      - 'release/*'
+
+jobs:
+  build:
+    runs-on: self-hosted-label2
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Build on Release Branch
+      run: |
+        npm run build
+
+    # Add more steps as needed for deployment, testing, etc.
