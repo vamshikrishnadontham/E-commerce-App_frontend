@@ -28,7 +28,7 @@ jobs:
   release-job:
     runs-on: self-hosted
 
-    if: startsWith(github.ref, 'refs/heads/release')
+    if: startsWith(github.ref, 'refs/heads/release*')
 
     steps:
       - name: Checkout repository
