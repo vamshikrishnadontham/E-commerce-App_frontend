@@ -28,19 +28,15 @@ jobs:
   release-job:
     runs-on: self-hosted
 
-    jobs:
-      label2-job:
-        runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v2
+      - name: Run label2 job
+        run: |
+          # Add your label2 job command here
+          # For example:
+          echo "Running label2 job on the new release branch."
 
-          - name: Run label2 job
-            run: |
-              # Add your label2 job command here
-              # For example:
-              echo "Running label2 job on the new release branch."
-
-          - name: Build React app
-            run: npm run build
+      - name: Build React app
+        run: npm run build
