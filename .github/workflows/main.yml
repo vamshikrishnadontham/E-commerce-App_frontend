@@ -28,5 +28,4 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      env:
-        CI: true
+      
