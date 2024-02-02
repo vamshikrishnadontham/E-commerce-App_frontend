@@ -2,8 +2,10 @@ name: Release Workflow
 
 on:
   push:
+    types:
+      - created
     branches:
-      - 'release*'
+      - 'releases/**'
 
 jobs:
   build:
