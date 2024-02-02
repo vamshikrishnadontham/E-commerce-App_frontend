@@ -28,4 +28,5 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      
+      - name: Copy build artifacts to destination
+        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\dev_workspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
