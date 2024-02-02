@@ -1,4 +1,4 @@
-name: Build and Upload Shopify App
+name: Build React on Self-Hosted Runner
 
 on:
   push:
@@ -10,35 +10,23 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        label:
-          - label1  # Add your desired label(s) here
+        node-version: [14.x]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: |
+        npm install
 
-  release-job:
-    runs-on: self-hosted
+    - name: Build React
+      run: |
+        npm run build
 
-    if: startsWith(github.ref, 'refs/heads/release*')
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run label2 job
-        run: |
-          # Add your label2 job command here
-          # For example:
-          echo "Running label2 job on the new release branch."
-
-      - name: Build React app
-        run: npm run build
+    # Add more steps as needed for deployment, testing, etc.
