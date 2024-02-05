@@ -8,13 +8,13 @@ on:
     branches:
       - release
 
-master:
-  needs:build
+jobs:
+  build:
     runs-on: self-hosted
     strategy:
       matrix:
         label:
-          - DEV_ENVIRONMENT  # Add your desired label(s) here
+          - label1  # Add your desired label(s) here
 
     steps:
       - name: Checkout repository
