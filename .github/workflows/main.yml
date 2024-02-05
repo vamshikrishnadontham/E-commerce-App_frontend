@@ -9,30 +9,40 @@ on:
       - release
 
 jobs:
-  build-master:
+  label1-job:
     runs-on: self-hosted
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, 'label1')
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
         run: npm install
 
-      - name: Build and Test Master Branch
-        run: npm run build
+      - name: Run label1 job
+        run: npm run label1
 
-  build-release:
+  label2-job:
     runs-on: self-hosted
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/release'
+    if: github.event_name == 'workflow_dispatch' && contains(github.event.client_payload.action, 'label2')
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
         run: npm install
 
-      - name: Build and Test Release Branch
-        run: npm run build
+      - name: Run label2 job
+        run: npm run label2
