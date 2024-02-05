@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
+    branches:
+      - release
 
 jobs:
   build:
@@ -11,7 +14,8 @@ jobs:
     strategy:
       matrix:
         label:
-          - label1  # Add your desired label(s) here
+          - label1  # Used for 'master' branch
+          - label2  # Used for 'release' branch
 
     steps:
       - name: Checkout repository
@@ -27,5 +31,3 @@ jobs:
 
       - name: Build React app
         run: npm run build
-
-      
