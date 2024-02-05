@@ -43,6 +43,11 @@ jobs:
     needs: build
     if: github.event_name == 'workflow_dispatch' || github.event.inputs.manual-trigger
 
+    strategy:
+      matrix:
+        label:
+          - label2  # Use label-2 for the release branch
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -56,7 +61,6 @@ jobs:
         run: npm install
 
       - name: Build
-        run: |npm run build
-          
+        run: |
+          npm run build
           # Add your release build and upload steps here
-
