@@ -15,7 +15,6 @@ jobs:
       matrix:
         label:
           - label1  # Used for 'master' branch
-          - label2  # Used for 'release' branch
 
     steps:
       - name: Checkout repository
