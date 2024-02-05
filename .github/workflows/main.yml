@@ -9,7 +9,7 @@ on:
 jobs:
   label1-job:
     runs-on: self-hosted
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, '[label-1]')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.event.commits[0].message, '[label-1]')
 
     steps:
       - name: Checkout code
@@ -28,7 +28,7 @@ jobs:
 
   release-branch-job:
     runs-on: self-hosted
-    if: github.event_name == 'push' && github.ref == 'refs/heads/release' && contains(github.event.head_commit.message, '[label-2]')
+    if: github.event_name == 'push' && github.ref == 'refs/heads/release' && contains(github.event.commits[0].message, '[label-2]')
 
     steps:
       - name: Checkout code
