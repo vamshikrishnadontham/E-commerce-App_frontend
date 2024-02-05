@@ -1,4 +1,4 @@
-name: Build and Upload Shopify App
+name: CI/CD Workflow
 
 on:
   push:
@@ -6,38 +6,33 @@ on:
       - master
   workflow_dispatch:
     branches:
-      - release_qa_20240205
+      - release
 
 jobs:
-  build:
+  build-master:
     runs-on: self-hosted
-    strategy:
-      matrix:
-        label:
-          - label1  # for master branch
-          - label-2  # for release_qa_20240205 branch when manually triggered
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Build React app
+      - name: Build and Test Master Branch
         run: npm run build
 
-      - name: Copy build artifacts to destination
-        run: |
-          if [ "${{ matrix.label }}" == "label1" ]; then
-            cp -r "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" "C:\inetpub\wwwroot\dev\"
-          elif [ "${{ matrix.label }}" == "label-2" ]; then
-            cp -r "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" "C:\inetpub\wwwroot\qa\"
-          fi
-          
-      # Add more steps as needed
+  build-release:
+    runs-on: self-hosted
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/release'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build and Test Release Branch
+        run: npm run build
