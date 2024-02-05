@@ -1,27 +1,16 @@
-name: Manual Workflow Dispatch
+name: Manual Trigger Workflow
 
+# configure manual trigger
 on:
   workflow_dispatch:
-    branches:
-      - master
 
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build React App
-        run: npm run build
-
-      # Add more steps for deployment or any other tasks
+      - name: Build project
+        run: |
+          npm install
+          npm run build
