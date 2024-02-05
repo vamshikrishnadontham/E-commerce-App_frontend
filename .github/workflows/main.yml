@@ -40,7 +40,9 @@ jobs:
     strategy:
       matrix:
         label:
-          - QA_ENVIRONMENT
+          - label-2
+
+    if: github.event_name == 'workflow_dispatch'  # Run only on workflow_dispatch event
 
     steps:
       - name: Checkout repository
