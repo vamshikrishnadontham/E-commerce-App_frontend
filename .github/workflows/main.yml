@@ -74,4 +74,4 @@ jobs:
         with:
           script: |
             const response = await github.rest.actions.createOrUpdateApproval({owner: context.repo.owner, repo: context.repo.repo, pull_number: context.payload.pull_request.number, event: 'APPROVE'})
-            console.log(response)
+            console.log(response
