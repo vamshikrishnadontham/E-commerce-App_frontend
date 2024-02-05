@@ -5,6 +5,15 @@ on:
     branches:
       - master
 
+  workflow_dispatch:
+    branches:
+      - release
+    inputs:
+      qa_environment_label:
+        description: 'Run on QA_ENVIRONMENT label'
+        required: true
+        default: 'QA_ENVIRONMENT'
+
 jobs:
   build:
     runs-on: self-hosted
@@ -28,4 +37,23 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      
+  release:
+    runs-on: self-hosted
+    needs: build
+    strategy:
+      matrix:
+        label:
+          - QA_ENVIRONMENT
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Copy build artifacts to QA_ENVIRONMENT
+        run: |
+          $buildPath = "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*"
+          $destinationPath = "C:\inetpub\wwwroot\qa\"
+          Copy-Item -Path $buildPath -Destination $destinationPath -Recurse -Force
+          Write-Host "Build artifacts copied to $destinationPath."
+
+# Add any additional jobs or steps as needed
