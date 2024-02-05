@@ -8,7 +8,7 @@ on:
     branches:
       - release
 
-master:
+jobs:
   build:
     runs-on: self-hosted
     strategy:
@@ -58,4 +58,4 @@ master:
         run: npm run build
 
       - name: Copy build artifacts to destination
-        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\qaworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\qa\" -Recurse -Force
+        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\qaworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
