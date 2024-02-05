@@ -41,12 +41,14 @@ jobs:
   release:
     runs-on: self-hosted
     needs: build
-    if: github.event_name == 'workflow_dispatch' || github.event.inputs.manual-trigger
+    if: |
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.manual-trigger) ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/release')
 
     strategy:
       matrix:
         label:
-          - label2  # Use label-2 for the release branch
+          - label-2  # Use label-2 for the release branch
 
     steps:
       - name: Checkout repository
