@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         label:
-          - label1  # Used for 'master' branch
+          - label1  # Add your desired label(s) here
 
     steps:
       - name: Checkout repository
@@ -31,12 +31,31 @@ jobs:
       - name: Build React app
         run: npm run build
 
-  manual-approval:
-    runs-on: self-hosted
+      - name: Copy build artifacts to destination
+        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
+
+  release:
     needs: build
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        label:
+          - QA_ENVIRONMENT
+
     steps:
-      - name: Manual Approval
-        if: github.event_name == 'workflow_run' && matrix.label == 'label2'
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          commit_message: 'Workflow approved'
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Copy build artifacts to destination
+        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\qa\" -Recurse -Force
