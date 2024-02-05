@@ -8,13 +8,13 @@ on:
     branches:
       - release
 
-jobs:
+master:
   build:
     runs-on: self-hosted
     strategy:
       matrix:
         label:
-          - label1  # Add your desired label(s) here
+          - DEV_ENVIRONMENT  # Add your desired label(s) here
 
     steps:
       - name: Checkout repository
@@ -58,4 +58,4 @@ jobs:
         run: npm run build
 
       - name: Copy build artifacts to destination
-        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\qa\" -Recurse -Force
+        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\qaworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\qa\" -Recurse -Force
