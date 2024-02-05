@@ -1,31 +1,32 @@
-name: React Build
+name: Release Workflow
 
 on:
-  push:
-    branches:
-      - master 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'release'
+        required: true
+      
 
 jobs:
-  build-and-deploy:
+  release:
     runs-on: label2
 
-    strategy:
-      matrix:
-        node-version: [14]
-
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.branch }}
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
 
-    - name: Build React app
-      run: npm run build
+    - name: Run release script
+      run: npm run release
 
-
+    # Add additional steps as needed for your specific release process
