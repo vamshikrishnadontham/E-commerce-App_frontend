@@ -1,9 +1,12 @@
 name: Build and Upload Shopify App
 
 on:
-  workflow_dispatch:
+  push:
     branches:
       - master
+  workflow_dispatch:
+    branches:
+      - release
 
 jobs:
   build:
