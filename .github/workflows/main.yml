@@ -1,57 +1,35 @@
-name: Release Workflow
+name: Build and Upload Shopify App
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
-    inputs:
-      label:
-        description: 'Label for the runner'
-        required: true
-        default: 'label-2'
+    branches:
+      - release
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        label:
+          - label1  # Add your desired label(s) here
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '14'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run your release script
-      run: npm run your-release-script
+      - name: Build React app
+        run: npm run build
 
-  manual-approval:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-    - name: Manual approval
-      uses: wei/ci-approve@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-  release:
-    needs: [build, manual-approval]
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run your final release steps
-      run: npm run final-release-steps
+      - name: Copy build artifacts to destination
+        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
