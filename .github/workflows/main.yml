@@ -31,3 +31,13 @@ jobs:
 
       - name: Build React app
         run: npm run build
+
+  manual-approval:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Manual Approval
+        if: github.event_name == 'workflow_run' && matrix.label == 'label2'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Workflow approved'
