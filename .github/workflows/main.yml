@@ -1,10 +1,9 @@
-name: CI/CD Workflow
+name: React CI/CD Workflow
 
 on:
   push:
     branches:
-      - main
-      - 'releases/**'
+      - master
   pull_request:
     types:
       - labeled
@@ -26,12 +25,12 @@ jobs:
         run: |
           npm install
 
-      - name: Build on main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Build on main with label-1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[label-1]')
         run: |
           npm run build
 
-      - name: Build on release branch or manually triggered workflow
-        if: github.event_name == 'workflow_dispatch' && contains(github.event.inputs.branch, 'releases/')
+      - name: Build on release branch with label-2
+        if: (github.event_name == 'workflow_dispatch' && contains(github.event.inputs.branch, 'releases/')) || (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/releases/') && contains(github.event.head_commit.message, '[label-2]'))
         run: |
           npm run build
