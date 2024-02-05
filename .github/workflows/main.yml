@@ -1,37 +1,31 @@
-name: CI/CD Workflow
+name: Build and Upload Shopify App
 
 on:
   push:
     branches:
       - master
-  workflow_dispatch:
-    branches:
-      - release
 
 jobs:
-  label-job:
+  build:
     runs-on: self-hosted
+    strategy:
+      matrix:
+        label:
+          - label1  # Add your desired label(s) here
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: '14'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run label job
-        run: |
-          if ($env:RUNNER_LABELS -like '*label1*') {
-            npm run label1
-          }
-          elseif ($env:RUNNER_LABELS -like '*label-2*') {
-            npm run label2
-          }
-          else {
-            Write-Host "No matching label found."
-          }
+      - name: Build React app
+        run: npm run build
+
+      
