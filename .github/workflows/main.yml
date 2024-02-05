@@ -6,7 +6,7 @@ on:
       - master
   workflow_dispatch:
     branches:
-      - release
+      - release_qa_20240205
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       matrix:
         label:
           - label1  # for master branch
-          - label-2  # for release_qa_20240205 branch
+          - label-2  # for release_qa_20240205 branch when manually triggered
 
     steps:
       - name: Checkout repository
