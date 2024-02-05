@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
     branches:
       - release
+    inputs:
+      manual-trigger:
+        description: 'Manually trigger the release workflow'
+        required: false
 
 jobs:
   build:
@@ -37,7 +41,7 @@ jobs:
   release:
     runs-on: self-hosted
     needs: build
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || github.event.inputs.manual-trigger
 
     steps:
       - name: Checkout repository
@@ -51,7 +55,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and Upload Release
-        run: |
-          npm run build
+      - name: Build
+        run: |npm run build
+          
           # Add your release build and upload steps here
+
