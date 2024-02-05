@@ -1,25 +1,15 @@
 name: Build and Upload Shopify App
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
-    branches:
-      - release
     inputs:
       manual-trigger:
-        description: 'Manually trigger the release workflow'
+        description: 'Manually trigger the workflow'
         required: false
 
 jobs:
-  build:
+  manual-triggered-job:
     runs-on: self-hosted
-    strategy:
-      matrix:
-        label:
-          - label1  # Add your desired label(s) here
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -38,26 +28,5 @@ jobs:
       - name: Copy build artifacts to destination
         run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
 
-  release:
-    runs-on: self-hosted
-    needs: build
-    strategy:
-      matrix:
-        label:
-          - label-2  # Use label-2 for the release branch
+      # Add any additional steps specific to this job
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-          # Add your release build and upload steps here
