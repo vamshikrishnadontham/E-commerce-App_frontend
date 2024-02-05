@@ -1,27 +1,54 @@
-name: Release Workflow
+name: CI/CD Workflow
 
 on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  pull_request:
+    types:
+      - labeled
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Release branch name'
-        required: true
+        description: 'Release branch'
+        required: false
 
 jobs:
-  release:
-    runs-on: windows-latest
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.ref, 'refs/heads/release/') && contains(github.event_name, 'push')
+  build:
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build and Deploy on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          npm run build
+          # Your deployment commands for the main branch here
+          # ...
+
+  release:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
       - name: Check for label-2
         id: check_label
         run: echo "::set-output name=LABEL::$(git log --format=%B -n 1 ${{ github.sha }} | grep -oP '\[label-2\]')"
 
-      - name: Run on label-2
-        if: steps.check_label.outputs.LABEL == '[label-2]'
+      - name: Build and Deploy on label-2 or release branch
+        if: steps.check_label.outputs.LABEL == '[label-2]' || (github.event_name == 'workflow_dispatch' && contains(github.event.inputs.branch, 'releases/'))
         run: |
-          # Your release commands here
+          npm run build
+          # Your deployment commands for the release branch here
           # ...
