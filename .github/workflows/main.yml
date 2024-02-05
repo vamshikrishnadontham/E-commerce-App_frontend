@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+      - release
+  workflow_dispatch:
+    branches:
+      - release
 
 jobs:
   build:
@@ -11,7 +15,8 @@ jobs:
     strategy:
       matrix:
         label:
-          - label1  # Add your desired label(s) here
+          - label1  # Add your desired label(s) here for master
+          - label2  # Add your desired label(s) here for release
 
     steps:
       - name: Checkout repository
@@ -29,4 +34,25 @@ jobs:
         run: npm run build
 
       - name: Copy build artifacts to destination
-        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
+        run: |
+          if [ ${{ github.event_name }} == 'push' ] && [ ${{ github.ref }} == 'refs/heads/master' ]; then
+            Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
+          elif [ ${{ github.event_name }} == 'workflow_dispatch' ] && [ ${{ github.ref }} == 'refs/heads/release' ]; then
+            Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\qa\" -Recurse -Force
+          fi
+
+  release:
+    needs: build
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        label:
+          - label2  # Add your desired label(s) here for release
+
+    steps:
+      - name: Approve release
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const response = await github.rest.actions.createOrUpdateApproval({owner: context.repo.owner, repo: context.repo.repo, pull_number: context.payload.pull_request.number, event: 'APPROVE'})
+            console.log(response)
