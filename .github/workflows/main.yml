@@ -26,10 +26,12 @@ jobs:
 
       - name: Run label job
         run: |
-          if [[ "${{ runner.labels }}" == *"label1"* ]]; then
+          if ($env:RUNNER_LABELS -like '*label1*') {
             npm run label1
-          elif [[ "${{ runner.labels }}" == *"label-2"* ]]; then
+          }
+          elseif ($env:RUNNER_LABELS -like '*label-2*') {
             npm run label2
-          else
-            echo "No matching label found."
-          fi
+          }
+          else {
+            Write-Host "No matching label found."
+          }
