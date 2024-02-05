@@ -1,66 +1,65 @@
-name: CI/CD Pipeline
+name: CI/CD Workflow
 
 on:
   push:
     branches:
-      - main
-      - release/*
-      - production/*
-
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy (e.g., production)'
-        required: true
+      - master
+      - release
 
 jobs:
-  deploy_dev:
-    runs-on: windows-latest
+  label1-job:
+    runs-on: self-hosted
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.event.head_commit.message, '[label-1]')
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to Dev
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          $destinationDirectory = "C:\inetpub\wwwroot\dev"
-          if (!(Test-Path $destinationDirectory)) {
-            New-Item -ItemType Directory -Path $destinationDirectory | Out-Null
-          }
-          Copy-Item -Path ${{ github.workspace }}\* -Destination $destinationDirectory -Recurse -Force
-          Write-Host "Deploying to Dev environment"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
 
-  deploy_qa:
-    runs-on: windows-latest
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run job for label-1 on master
+        run: npm run label1-job # replace with your actual build/test command
+
+  release-branch-job:
+    runs-on: self-hosted
+    if: github.event_name == 'push' && github.ref == 'refs/heads/release' && contains(github.event.head_commit.message, '[label-2]')
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to QA
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
-        run: |
-          $destinationDirectory = "C:\inetpub\wwwroot\qa"
-          if (!(Test-Path $destinationDirectory)) {
-            New-Item -ItemType Directory -Path $destinationDirectory | Out-Null
-          }
-          Copy-Item -Path ${{ github.workspace }}\* -Destination $destinationDirectory -Recurse -Force
-          Write-Host "Deploying to QA environment"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
 
-  deploy_production:
-    runs-on: windows-latest
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run job for label-2 on release branch
+        run: npm run release-branch-job # replace with your actual build/test command
+
+  manual-trigger-job:
+    runs-on: self-hosted
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.event == 'manual'
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to Production
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/production/')
-        run: |
-          $destinationDirectory = "C:\inetpub\wwwroot\production"
-          if (!(Test-Path $destinationDirectory)) {
-            New-Item -ItemType Directory -Path $destinationDirectory | Out-Null
-          }
-          Copy-Item -Path ${{ github.workspace }}\* -Destination $destinationDirectory -Recurse -Force
-          Write-Host "Deploying to Production environment"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run manual trigger job
+        run: npm run manual-trigger-job # replace with your actual deploy/release command
