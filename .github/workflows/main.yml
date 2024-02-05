@@ -43,7 +43,7 @@ jobs:
     strategy:
       matrix:
         label:
-          - label2  # Add your desired label(s) here for release
+          - label-2  # Add your desired label(s) here for release
 
     steps:
       - name: Wait for manual trigger
