@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
-    branches:
       - release
 
 jobs:
@@ -14,7 +12,8 @@ jobs:
     strategy:
       matrix:
         label:
-          - DEV_ENVIRONMENT  # Add your desired label(s) here
+          - label1  # DEV_ENVIRONMENT
+          - label-2  # QA_ENVIRONMENT
 
     steps:
       - name: Checkout repository
@@ -32,30 +31,11 @@ jobs:
         run: npm run build
 
       - name: Copy build artifacts to destination
-        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
+        run: |
+          if [ ${{ matrix.label }} == "label1" ]; then
+            Copy-Item -Path "C:\Users\vamshi\actions-runner\devworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
+          elif [ ${{ matrix.label }} == "label-2" ]; then
+            Copy-Item -Path "C:\Users\vamshi\actions-runner\qaworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\qa\" -Recurse -Force
+          fi
 
-  release:
-    needs: build
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        label:
-          - QA_ENVIRONMENT
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build React app
-        run: npm run build
-
-      - name: Copy build artifacts to destination
-        run: Copy-Item -Path "C:\Users\vamshi\actions-runner\qaworkspace\E-commerce-App_frontend\E-commerce-App_frontend\build\*" -Destination "C:\inetpub\wwwroot\dev\" -Recurse -Force
+# You can add additional steps as needed for each environment
